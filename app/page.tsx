@@ -5,18 +5,18 @@ export default function Home() {
     <main
       className="relative w-screen h-screen"
       style={{
-        backgroundImage: "url('/bg.jpg')",
+        backgroundImage: "url('/pexels-adrien-olichon-1257089-2387819.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/50" />
+    
 
-      <div className="absolute bottom-[-20px] left-0 z-20 w-[600px] h-[600px]">
+      <div className="absolute top-1/2 left-1/2 z-20 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2">
         <SceneLoader />
       </div>
 
-      <p className="absolute bottom-6 left-0 right-0 z-10 text-center text-black text-sm font-light tracking-widest">
+      <p className="absolute bottom-6 left-0 right-0 z-10 text-center text-white text-sm font-light tracking-widest">
         developed by kaleu 2026 — under construction
       </p>
     </main>
