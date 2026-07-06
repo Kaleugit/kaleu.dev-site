@@ -17,7 +17,7 @@ export default function Home() {
       </div>
 
       <p className="absolute bottom-6 left-0 right-0 z-10 text-center text-white text-sm font-light tracking-widest">
-        developed by kaleu 2026 — under construction
+        by kaleu 2026 — under devolpment
       </p>
     </main>
   );
