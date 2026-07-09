@@ -17,6 +17,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ backgroundColor: "var(--bg)", color: "var(--text)", minHeight: "100dvh", display: "flex", flexDirection: "column" }}>
         <Nav />
         <main style={{ flex: 1 }}>{children}</main>
+        <footer style={{
+          borderTop: '1px solid var(--border)',
+          padding: '1.25rem 2rem',
+          textAlign: 'center',
+          fontSize: '0.75rem',
+          fontFamily: 'var(--font-geist-mono)',
+          color: 'var(--muted)',
+          letterSpacing: '0.04em',
+        }}>
+          kaleu.dev — 2026 All rights reserved®
+        </footer>
       </body>
     </html>
   );

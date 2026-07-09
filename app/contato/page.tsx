@@ -3,18 +3,23 @@ import Image from "next/image";
 const channels = [
   {
     label: "Email",
-    value: "oda.circle@gmail.com",
-    href: "mailto:oda.circle@gmail.com",
+    value: "kaleukaleu34@gmail.com",
+    href: "mailto:kaleukaleu34@gmail.com",
+  },
+  {
+    label: "WhatsApp",
+    value: "+55 15 99718-7246",
+    href: "https://wa.me/5515997187246",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/kaleu-lima",
+    href: "https://www.linkedin.com/in/kaleu-lima/",
   },
   {
     label: "GitHub",
     value: "github.com/Kaleugit",
     href: "https://github.com/Kaleugit",
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/kaleu",
-    href: "https://linkedin.com/in/kaleu",
   },
 ];
 
