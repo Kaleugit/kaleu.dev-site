@@ -57,8 +57,8 @@ export default function Home() {
               lineHeight: 1.7,
               marginBottom: '2.5rem',
             }}>
-              Desenvolvedor full stack focado em interfaces limpas e sistemas que escalam.
-              Construindo produtos do zero ao deploy.
+              Cientista de dados por formação, desenvolvedor full stack na prática.
+              Construindo sistemas escaláveis e interfaces limpas com a bagagem de múltiplos setores (indústria, educação, construção civil). Foco em código eficiente e gestão organizada, do zero ao deploy.
             </p>
 
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>

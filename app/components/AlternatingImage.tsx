@@ -14,17 +14,10 @@ const FADE_DURATION = 400;
 
 export default function AlternatingImage() {
   const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
   const [frozen, setFrozen] = useState(false);
   const freezeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const goTo = (next: number) => {
-    setVisible(false);
-    setTimeout(() => {
-      setIndex(next);
-      setVisible(true);
-    }, FADE_DURATION);
-  };
+  const goTo = (next: number) => setIndex(next);
 
   const handleImageClick = () => {
     setFrozen(true);
@@ -35,11 +28,7 @@ export default function AlternatingImage() {
   useEffect(() => {
     if (frozen) return;
     const id = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIndex((i) => (i + 1) % images.length);
-        setVisible(true);
-      }, FADE_DURATION);
+      setIndex((i) => (i + 1) % images.length);
     }, AUTO_INTERVAL);
     return () => clearInterval(id);
   }, [frozen]);
@@ -60,18 +49,22 @@ export default function AlternatingImage() {
           cursor: 'pointer',
         }}
       >
-        <Image
-          src={images[index]}
-          alt=""
-          fill
-          priority
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'center',
-            opacity: visible ? 1 : 0,
-            transition: `opacity ${FADE_DURATION}ms ease`,
-          }}
-        />
+        {images.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            fill
+            priority={i === 0}
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+              opacity: i === index ? 1 : 0,
+              transition: `opacity ${FADE_DURATION}ms ease`,
+              zIndex: i === index ? 1 : 0,
+            }}
+          />
+        ))}
       </div>
 
       {/* Setas — fora da foto */}

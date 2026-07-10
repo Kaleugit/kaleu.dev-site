@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           color: 'var(--muted)',
           letterSpacing: '0.04em',
         }}>
-          kaleu.dev — 2026 All rights reserved®
+          kaleu.dev — 2026 All rights reserved ®
         </footer>
       </body>
     </html>
