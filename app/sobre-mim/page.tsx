@@ -1,14 +1,23 @@
 import Image from "next/image";
 
-const skills = [
-  "TypeScript", "React", "Next.js", "Node.js",
-  "PostgreSQL", "Docker", "Git", "REST APIs",
-  "Tailwind CSS", "AWS", "Prisma", "Redis",
+const projectStack = [
+  { name: "CE-APP",                lang: "TypeScript",   framework: "Ionic 6 + Angular 13 + Capacitor", db: null },
+  { name: "CE-Monitor",            lang: "JavaScript",   framework: "Express.js + BullMQ",              db: "MySQL + Redis" },
+  { name: "Sleep-Good",            lang: "TypeScript",   framework: "Expo + Next.js 15",                db: "Supabase" },
+  { name: "Race-Game",             lang: "JavaScript",   framework: "Vite + Three.js",                  db: null },
+  { name: "Moldura",               lang: "TypeScript",   framework: "Next.js 16 + React 19",            db: null },
+  { name: "Kaleu.dev-site",        lang: "TypeScript",   framework: "Next.js 16 + React 19",            db: null },
+  { name: "Jogodopatrao",          lang: "JavaScript",   framework: "Three.js (Vanilla)",               db: null },
+  { name: "Jogodopatrao-portfolio",lang: "JavaScript",   framework: "Babylon.js",                       db: null },
+  { name: "Tempo-Jiggler",         lang: "Python",       framework: "CustomTkinter",                    db: null },
+  { name: "CV-Maker",              lang: "JavaScript",   framework: "Puppeteer (CLI)",                  db: null },
+  { name: "HTTP-Restaurant",       lang: "HTML/CSS/JS",  framework: "Vanilla",                          db: null },
+  { name: "Mercor",                lang: null,           framework: "Documentacao/PDFs",                db: null },
 ];
 
 const stats = [
   { value: "3+", label: "Anos de experiência" },
-  { value: "20+", label: "Projetos entregues" },
+  { value: "15+", label: "Projetos entregues" },
   { value: "Aberto", label: "Para novos projetos" },
 ];
 
@@ -80,25 +89,75 @@ export default function SobreMim() {
           </div>
         </div>
 
-        {/* Stack — abaixo da foto/bio */}
+        {/* Stack — projetos e tecnologias */}
         <div style={{
           borderTop: '1px solid var(--border)',
           marginTop: '4rem',
           paddingTop: '3rem',
         }}>
           <p style={{
-            fontSize: '0.72rem',
             fontFamily: 'var(--font-geist-mono)',
+            fontSize: '0.72rem',
             color: 'var(--muted)',
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            marginBottom: '1rem',
+            marginBottom: '1.25rem',
           }}>
-            Stack
+            Projetos: stacks &amp; frameworks
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {skills.map((skill) => (
-              <span key={skill} className="tag">{skill}</span>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '0.5rem',
+          }}>
+            {projectStack.map(({ name, lang, framework, db }) => (
+              <div
+                key={name}
+                style={{
+                  backgroundColor: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '0.5rem',
+                  padding: '0.875rem 1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.35rem',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{
+                    fontFamily: 'var(--font-geist-mono)',
+                    fontSize: '0.8125rem',
+                    fontWeight: 500,
+                    color: 'var(--text)',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}>
+                    {name}
+                  </span>
+                  {lang && (
+                    <span className="tag" style={{ flexShrink: 0 }}>{lang}</span>
+                  )}
+                </div>
+                <span style={{
+                  fontFamily: 'var(--font-geist-mono)',
+                  fontSize: '0.6875rem',
+                  color: 'var(--muted)',
+                  lineHeight: 1.4,
+                }}>
+                  {framework}
+                </span>
+                {db && (
+                  <span style={{
+                    fontFamily: 'var(--font-geist-mono)',
+                    fontSize: '0.6875rem',
+                    color: 'var(--muted)',
+                    opacity: 0.65,
+                  }}>
+                    db: {db}
+                  </span>
+                )}
+              </div>
             ))}
           </div>
         </div>
