@@ -205,7 +205,7 @@ export default function ACasaDoPatrao() {
               patrocinadores e veículos de imprensa, o desafio foi criar uma experiência
               interativa que trouxesse um pouco do universo do programa. O jogo foi
               desenvolvido para rodar de forma fluida durante o evento presencial, servindo
-              como uma ativação dinâmica para os convidados — com um atrativo prêmio para
+              como uma ativação dinâmica para os convidados, com um atrativo prêmio para
               o melhor colocado do ranking.
             </p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>
@@ -254,12 +254,16 @@ export default function ACasaDoPatrao() {
               <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--border)" }}>
                 {[
                   {
-                    title: "Three.js r165",
+                    title: "Three.js",
                     desc: "Utilizado para a construção e renderização do mapa principal do jogo. A integração foi realizada de forma leve utilizando ESM (importmap) diretamente no navegador, sem a necessidade de um empacotador (bundler) no build final.",
                   },
                   {
-                    title: "GSAP + DiceBear + Troika-three-text",
-                    desc: "Animações, geração de avatares procedurais e renderização de texto em 3D integrados ao canvas Three.js.",
+                    title: "GSAP + DiceBear",
+                    desc: "Animações e geração de avatares procedurais integrados ao canvas Three.js.",
+                  },
+                  {
+                    title: "Troika-three-text",
+                    desc: "Renderização de texto em 3D integrada ao canvas Three.js.",
                   },
                 ].map((item) => (
                   <div key={item.title} style={{
