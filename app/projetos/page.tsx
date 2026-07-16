@@ -10,6 +10,14 @@ const projects = [
     year: "2026",
   },
   {
+    title: "A Casa do Patrão",
+    description:
+      "Jogo interativo desenvolvido para o evento de lançamento do reality show \"A Casa do Patrão\" (The Walt Disney Company e Record TV), projetado para engajar patrocinadores e imprensa.",
+    tags: ["Three.js", "Next.js 14", "Supabase", "Vercel"],
+    slug: "a-casa-do-patrao",
+    year: "2026",
+  },
+  {
     title: "Projeto Alpha",
     description:
       "Plataforma SaaS para gestão de tarefas com autenticação, permissões por papel e dashboard em tempo real.",
