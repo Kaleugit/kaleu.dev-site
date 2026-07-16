@@ -96,23 +96,11 @@ html {
   padding-left: 0.75rem;
 }
 
-.project-row:hover .project-num {
-  color: var(--accent);
-}
-
 .project-row:hover .project-arrow {
   opacity: 1;
   transform: translateX(4px);
 }
 
-.project-num {
-  font-size: 0.75rem;
-  font-family: var(--font-geist-mono), monospace;
-  color: var(--border);
-  transition: color 0.15s ease;
-  line-height: 1.6;
-  padding-top: 0.1rem;
-}
 
 .project-arrow {
   opacity: 0;
