@@ -184,7 +184,7 @@ export default function Moldura() {
             className="btn-primary"
             style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem" }}
           >
-            Ver projeto ao vivo →
+            Acessar Moldura →
           </a>
           <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
             {["Next.js 16", "React 19", "Vercel"].map((tag) => (

@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 const images = [
-  '/bg3.jpeg', '/bg1.jpeg', '/bg4.jpeg', '/bg5.jpeg',
-  '/bg6.jpeg', '/bg7.jpeg', '/bg8.jpeg',
+  '/bg3.jpeg', '/bg1.jpeg', '/bg4.jpeg',
+  '/bg6.jpeg', '/bg7.jpeg', '/bg9.jpeg',
 ];
 
 const AUTO_INTERVAL = 10000;

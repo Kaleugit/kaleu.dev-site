@@ -9,6 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   title: "kaleu.dev",
   description: "Portfólio de Kaleu — desenvolvedor full stack",
+  icons: { icon: "/imgtab.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
