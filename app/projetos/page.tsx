@@ -2,6 +2,14 @@ import Link from "next/link";
 
 const projects = [
   {
+    title: "Influlens",
+    description:
+      "Plataforma de monitoramento e analytics desenvolvida sob medida para a Câmara Municipal de São Paulo, que unifica Instagram, Facebook e YouTube em um painel com análise de sentimento por IA e relatórios automatizados.",
+    tags: ["Angular 13", "Ionic 6", "Node.js", "BullMQ", "MySQL", "Redis"],
+    slug: "influlens",
+    year: "2025/2026",
+  },
+  {
     title: "Tempo Jiggler",
     description:
       "Aplicativo desktop desenvolvido em Python para prevenir a inatividade do sistema operacional através de automação discreta de periféricos.",
