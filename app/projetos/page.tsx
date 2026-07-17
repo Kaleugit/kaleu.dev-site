@@ -59,7 +59,7 @@ export default function Projetos() {
           color: "var(--text)",
           marginBottom: "3rem",
         }}>
-          O que eu construí
+          O que eu entreguei
         </h1>
 
         <div style={{ borderTop: "1px solid var(--border)" }}>
