@@ -2,6 +2,14 @@ import Link from "next/link";
 
 const projects = [
   {
+    title: "Tempo Jiggler",
+    description:
+      "Aplicativo desktop desenvolvido em Python para prevenir a inatividade do sistema operacional através de automação discreta de periféricos.",
+    tags: ["Python 3", "CustomTkinter", "PyAutoGUI", "NumPy", "PyInstaller"],
+    slug: "tempo-jiggler",
+    year: "2026",
+  },
+  {
     title: "Moldura",
     description:
       "Adiciona bordas brancas ou pretas para impressão de fotos 15x10, preservando a composição e a proporção original.",
