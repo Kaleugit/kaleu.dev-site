@@ -25,38 +25,6 @@ const projects = [
     slug: "a-casa-do-patrao",
     year: "2026",
   },
-  {
-    title: "Projeto Alpha",
-    description:
-      "Plataforma SaaS para gestão de tarefas com autenticação, permissões por papel e dashboard em tempo real.",
-    tags: ["Next.js", "PostgreSQL", "Stripe"],
-    slug: "alpha",
-    year: "2024",
-  },
-  {
-    title: "Projeto Beta",
-    description:
-      "API REST de alta disponibilidade com rate limiting, cache Redis e documentação OpenAPI gerada automaticamente.",
-    tags: ["Node.js", "Redis", "Docker"],
-    slug: "beta",
-    year: "2024",
-  },
-  {
-    title: "Projeto Gamma",
-    description:
-      "App mobile-first de finanças pessoais com gráficos interativos e sincronização offline.",
-    tags: ["React", "TypeScript", "SQLite"],
-    slug: "gamma",
-    year: "2023",
-  },
-  {
-    title: "Projeto Delta",
-    description:
-      "E-commerce com integração de pagamento, painel admin e controle de estoque em tempo real.",
-    tags: ["Next.js", "Prisma", "AWS S3"],
-    slug: "delta",
-    year: "2023",
-  },
 ];
 
 export default function Projetos() {
