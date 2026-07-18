@@ -33,6 +33,14 @@ const projects = [
     slug: "a-casa-do-patrao",
     year: "2026",
   },
+  {
+    title: "Race Game",
+    description:
+      "Jogo de corrida 1v1 side-scrolling no navegador, desenvolvido com Three.js puro, com física customizada, áudio procedural e modelagem gráfica 100% gerada via código.",
+    tags: ["Three.js", "Vite", "Web Audio API", "Canvas API", "JavaScript"],
+    slug: "race-game",
+    year: "2026",
+  },
 ];
 
 export default function Projetos() {
