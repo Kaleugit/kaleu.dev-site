@@ -70,10 +70,10 @@ export default function SobreMim() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.125rem' }}>
             <p style={{ fontSize: '0.9375rem', color: 'var(--muted)', lineHeight: 1.75 }}>
-              Sou desenvolvedor full stack com um equilíbrio sólido entre habilidades técnicas e interpessoais. Gosto de atuar em toda a estrutura da aplicação, do banco de dados à interface. Trago a vivência e o rigor que acumulei em outras áreas profissionais para o desenvolvimento, pois acredito que a rota para a excelência é universal, independentemente da área de atuação.
+              Sou desenvolvedor full stack com um equilíbrio entre habilidades técnicas e interpessoais. Atuo em toda a estrutura da aplicação, do banco de dados à interface. Trago experiência de outras áreas profissionais para o desenvolvimento, pois acredito que a rota para a excelência é universal.
             </p>
             <p style={{ fontSize: '0.9375rem', color: 'var(--muted)', lineHeight: 1.75 }}>
-              Possuo uma visão sistêmica apurada, o que me permite mapear o projeto inteiro antes mesmo da execução. Por ter um alto senso de organização, prospero em ambientes de trabalho maduros e bem estruturados. É essa clareza de processos que me faz priorizar performance e código limpo.
+              Possuo uma visão sistêmica, o que me permite mapear o projeto antes mesmo da execução. Por ter um bom senso de organização, prospero em ambientes de trabalho maduros e bem estruturados. É essa clareza de processos que me faz priorizar sustentabilidade e escalabilidade.
             </p>
             <p style={{ fontSize: '0.9375rem', color: 'var(--muted)', lineHeight: 1.75 }}>
               Meu grande objetivo profissional é dedicar essa base técnica a um projeto sólido e duradouro, que gere impacto direto e real na qualidade de vida de pessoas em situação de vulnerabilidade. Para estar à altura desse desafio, mantenho uma rotina contínua de estudos e atualização sobre novas tecnologias.
