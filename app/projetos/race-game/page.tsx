@@ -3,6 +3,110 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { useT } from "../../components/LanguageProvider";
+
+const dict = {
+  pt: {
+    back: "← Projetos",
+    title: "Race Game",
+    intro: "Jogo de corrida 1v1 side-scrolling no navegador, desenvolvido com Three.js puro, com física customizada, áudio procedural e modelagem gráfica 100% gerada via código.",
+    cta: "Jogar agora →",
+    github: "GitHub →",
+    contextTitle: "O Contexto e o Desafio",
+    contextP1: "Este projeto nasceu da vontade de explorar os limites da renderização 3D e da manipulação de dados diretamente no navegador, sem depender de engines ou frameworks de interface.",
+    contextP2: "O desafio central foi criar um jogo de corrida fluido e imersivo, controlando um veículo com física de suspensão realista, onde a dependência de assets externos fosse reduzida a quase zero. O resultado é uma aplicação leve, rápida e que extrai o máximo desempenho das APIs nativas da web.",
+    techTitle: "Destaques Técnicos e Engenharia",
+    techP1: "O maior diferencial na arquitetura dessa aplicação é a forte dependência de geração procedural, tanto para a parte visual quanto para a sonora.",
+    highlights: [
+      {
+        title: "Modelagem Procedural",
+        desc: "O veículo (inspirado no clássico Toyota Bandeirante) foi construído inteiramente via código no Three.js, eliminando a necessidade de carregar arquivos 3D tradicionais (.glb). A malha foi montada com formas geométricas primitivas sobrepostas para eliminar costuras, com detalhes como janelas com clearcoat e faróis hemisféricos.",
+      },
+      {
+        title: "Engenharia de Som",
+        desc: "O jogo não utiliza arquivos de áudio pré-gravados para o motor. O som é sintetizado matematicamente em tempo real via Web Audio API. O sistema simula um motor de 4 marchas com transições dinâmicas de frequência, oscilações de RPM e um efeito de descompressão do turbo (blow-off) criado através da filtragem precisa de ruído branco.",
+      },
+      {
+        title: "Física Customizada",
+        desc: "A mecânica do carro não utiliza bibliotecas de física prontas. Foi implementado um sistema matemático próprio que calcula o comportamento independente da suspensão (mola-amortecedor), a influência da gravidade durante saltos e a interação da hitbox dinâmica 2D contra a malha do terreno gerado.",
+      },
+      {
+        title: "Sistema de Partículas",
+        desc: "A fumaça do escapamento é gerenciada por um pool otimizado de 100 sprites em Canvas API. A densidade, direção e turbulência das partículas reagem de forma dinâmica às ações do jogador, mudando com a ativação do turbo, aumento de velocidade ou durante manobras no ar.",
+      },
+      {
+        title: "Lobby e Otimização",
+        desc: "O menu inicial apresenta uma visualização 3D interativa do carro, suportando eventos de drag e zoom para mouse e touch. O loop principal da corrida foi desenhado para atualizar a telemetria, renderizar o cenário e processar a inteligência do bot inimigo sem comprometer a taxa de quadros do navegador.",
+      },
+    ],
+    roadmapTitle: "Próximos Passos",
+    roadmapP1: "A infraestrutura atual serve como MVP de um ecossistema competitivo. As próximas etapas focam em transformar a experiência individual em uma plataforma multiplayer.",
+    roadmap: [
+      {
+        title: "PvP Online",
+        desc: "Implementação de modo multiplayer em tempo real utilizando WebSockets para sincronização de estado entre jogadores.",
+      },
+      {
+        title: "Ranking e Leaderboard",
+        desc: "Sistema de pontuação persistente com tabela de classificação global e histórico de corridas por jogador.",
+      },
+      {
+        title: "Economia Interna",
+        desc: "Desenvolvimento de moeda virtual e sistema de apostas nas corridas, com potencial de evolução estrutural para uma plataforma competitiva.",
+      },
+    ],
+  },
+  en: {
+    back: "← Projects",
+    title: "Race Game",
+    intro: "A 1v1 side-scrolling racing game in the browser, built with pure Three.js, featuring custom physics, procedural audio, and graphics modeled 100% through code.",
+    cta: "Play now →",
+    github: "GitHub →",
+    contextTitle: "Context and Challenge",
+    contextP1: "This project was born from the desire to push the limits of 3D rendering and data manipulation directly in the browser, without relying on game engines or UI frameworks.",
+    contextP2: "The central challenge was to create a fluid, immersive racing game, controlling a vehicle with realistic suspension physics, while reducing the dependency on external assets to nearly zero. The result is a lightweight, fast application that squeezes maximum performance out of native web APIs.",
+    techTitle: "Technical Highlights and Engineering",
+    techP1: "The biggest differentiator in this application's architecture is its heavy reliance on procedural generation, for both visuals and sound.",
+    highlights: [
+      {
+        title: "Procedural Modeling",
+        desc: "The vehicle (inspired by the classic Toyota Bandeirante) was built entirely through code in Three.js, eliminating the need to load traditional 3D files (.glb). The mesh was assembled from overlapping primitive shapes to eliminate seams, with details such as clearcoat windows and hemispherical headlights.",
+      },
+      {
+        title: "Sound Engineering",
+        desc: "The game uses no pre-recorded audio files for the engine. The sound is mathematically synthesized in real time via the Web Audio API. The system simulates a 4-gear engine with dynamic frequency transitions, RPM oscillations, and a turbo blow-off effect created through precise white-noise filtering.",
+      },
+      {
+        title: "Custom Physics",
+        desc: "The car's mechanics do not rely on off-the-shelf physics libraries. A custom mathematical system computes the independent behavior of the suspension (spring-damper), the influence of gravity during jumps, and the interaction of a dynamic 2D hitbox against the generated terrain mesh.",
+      },
+      {
+        title: "Particle System",
+        desc: "The exhaust smoke is managed by an optimized pool of 100 sprites using the Canvas API. Particle density, direction, and turbulence react dynamically to the player's actions, changing with turbo activation, increased speed, or mid-air maneuvers.",
+      },
+      {
+        title: "Lobby and Optimization",
+        desc: "The main menu features an interactive 3D visualization of the car, supporting drag and zoom events for both mouse and touch. The main race loop was designed to update telemetry, render the scenery, and process the enemy bot's AI without compromising the browser's frame rate.",
+      },
+    ],
+    roadmapTitle: "Next Steps",
+    roadmapP1: "The current infrastructure serves as the MVP of a competitive ecosystem. The next steps focus on turning the single-player experience into a multiplayer platform.",
+    roadmap: [
+      {
+        title: "Online PvP",
+        desc: "Implementation of a real-time multiplayer mode using WebSockets for state synchronization between players.",
+      },
+      {
+        title: "Ranking and Leaderboard",
+        desc: "Persistent scoring system with a global leaderboard and per-player race history.",
+      },
+      {
+        title: "In-Game Economy",
+        desc: "Development of a virtual currency and race-betting system, with the structural potential to evolve into a competitive platform.",
+      },
+    ],
+  },
+};
 
 const images = [
   { src: "/img15.png", alt: "Race Game - lobby 3D interativo" },
@@ -114,6 +218,7 @@ function Carousel() {
 }
 
 export default function RaceGame() {
+  const t = useT(dict);
   return (
     <section className="detail-section">
       <div className="detail-container" style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
@@ -132,7 +237,7 @@ export default function RaceGame() {
           onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
           onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
         >
-          ← Projetos
+          {t.back}
         </Link>
 
         {/* Cabeçalho */}
@@ -153,7 +258,7 @@ export default function RaceGame() {
               color: "var(--text)",
               marginBottom: "0.75rem",
             }}>
-              Race Game
+              {t.title}
             </h1>
             <p style={{
               fontSize: "1rem",
@@ -161,9 +266,7 @@ export default function RaceGame() {
               lineHeight: 1.65,
               maxWidth: "36rem",
             }}>
-              Jogo de corrida 1v1 side-scrolling no navegador, desenvolvido com Three.js
-              puro, com física customizada, áudio procedural e modelagem gráfica 100%
-              gerada via código.
+              {t.intro}
             </p>
           </div>
           <span style={{
@@ -192,7 +295,7 @@ export default function RaceGame() {
             className="btn-primary"
             style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem" }}
           >
-            Jogar agora →
+            {t.cta}
           </a>
           <a
             href="https://github.com/Kaleugit/race-game"
@@ -208,7 +311,7 @@ export default function RaceGame() {
             onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
             onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
           >
-            GitHub →
+            {t.github}
           </a>
           <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
             {["Three.js", "Vite", "Web Audio API", "Canvas API", "JavaScript"].map((tag) => (
@@ -225,51 +328,24 @@ export default function RaceGame() {
 
           {/* Contexto */}
           <div>
-            <h2 style={headingStyle}>O Contexto e o Desafio</h2>
+            <h2 style={headingStyle}>{t.contextTitle}</h2>
             <p style={bodyStyle}>
-              Este projeto nasceu da vontade de explorar os limites da renderização 3D
-              e da manipulação de dados diretamente no navegador, sem depender de engines
-              ou frameworks de interface.
+              {t.contextP1}
             </p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-              O desafio central foi criar um jogo de corrida fluido e imersivo, controlando
-              um veículo com física de suspensão realista, onde a dependência de assets
-              externos fosse reduzida a quase zero. O resultado é uma aplicação leve, rápida
-              e que extrai o máximo desempenho das APIs nativas da web.
+              {t.contextP2}
             </p>
           </div>
 
           {/* Destaques Técnicos */}
           <div>
-            <h2 style={headingStyle}>Destaques Técnicos e Engenharia</h2>
+            <h2 style={headingStyle}>{t.techTitle}</h2>
             <p style={bodyStyle}>
-              O maior diferencial na arquitetura dessa aplicação é a forte dependência de
-              geração procedural, tanto para a parte visual quanto para a sonora.
+              {t.techP1}
             </p>
 
             <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--border)" }}>
-              {[
-                {
-                  title: "Modelagem Procedural",
-                  desc: "O veículo (inspirado no clássico Toyota Bandeirante) foi construído inteiramente via código no Three.js, eliminando a necessidade de carregar arquivos 3D tradicionais (.glb). A malha foi montada com formas geométricas primitivas sobrepostas para eliminar costuras, com detalhes como janelas com clearcoat e faróis hemisféricos.",
-                },
-                {
-                  title: "Engenharia de Som",
-                  desc: "O jogo não utiliza arquivos de áudio pré-gravados para o motor. O som é sintetizado matematicamente em tempo real via Web Audio API. O sistema simula um motor de 4 marchas com transições dinâmicas de frequência, oscilações de RPM e um efeito de descompressão do turbo (blow-off) criado através da filtragem precisa de ruído branco.",
-                },
-                {
-                  title: "Física Customizada",
-                  desc: "A mecânica do carro não utiliza bibliotecas de física prontas. Foi implementado um sistema matemático próprio que calcula o comportamento independente da suspensão (mola-amortecedor), a influência da gravidade durante saltos e a interação da hitbox dinâmica 2D contra a malha do terreno gerado.",
-                },
-                {
-                  title: "Sistema de Partículas",
-                  desc: "A fumaça do escapamento é gerenciada por um pool otimizado de 100 sprites em Canvas API. A densidade, direção e turbulência das partículas reagem de forma dinâmica às ações do jogador, mudando com a ativação do turbo, aumento de velocidade ou durante manobras no ar.",
-                },
-                {
-                  title: "Lobby e Otimização",
-                  desc: "O menu inicial apresenta uma visualização 3D interativa do carro, suportando eventos de drag e zoom para mouse e touch. O loop principal da corrida foi desenhado para atualizar a telemetria, renderizar o cenário e processar a inteligência do bot inimigo sem comprometer a taxa de quadros do navegador.",
-                },
-              ].map((item) => (
+              {t.highlights.map((item) => (
                 <div key={item.title} className="detail-row">
                   <p className="detail-row-title">
                     {item.title}
@@ -284,27 +360,12 @@ export default function RaceGame() {
 
           {/* Roadmap */}
           <div>
-            <h2 style={headingStyle}>Próximos Passos</h2>
+            <h2 style={headingStyle}>{t.roadmapTitle}</h2>
             <p style={bodyStyle}>
-              A infraestrutura atual serve como MVP de um ecossistema competitivo.
-              As próximas etapas focam em transformar a experiência individual em uma
-              plataforma multiplayer.
+              {t.roadmapP1}
             </p>
             <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--border)" }}>
-              {[
-                {
-                  title: "PvP Online",
-                  desc: "Implementação de modo multiplayer em tempo real utilizando WebSockets para sincronização de estado entre jogadores.",
-                },
-                {
-                  title: "Ranking e Leaderboard",
-                  desc: "Sistema de pontuação persistente com tabela de classificação global e histórico de corridas por jogador.",
-                },
-                {
-                  title: "Economia Interna",
-                  desc: "Desenvolvimento de moeda virtual e sistema de apostas nas corridas, com potencial de evolução estrutural para uma plataforma competitiva.",
-                },
-              ].map((item) => (
+              {t.roadmap.map((item) => (
                 <div key={item.title} className="detail-row">
                   <p className="detail-row-title">
                     {item.title}

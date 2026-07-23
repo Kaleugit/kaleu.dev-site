@@ -3,15 +3,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useLang, type Lang } from './LanguageProvider';
 
 const links = [
-  { href: '/sobre-mim', label: 'Sobre mim' },
-  { href: '/projetos', label: 'Projetos' },
-  { href: '/contato', label: 'Contato' },
+  { href: '/sobre-mim', label: { pt: 'Sobre mim', en: 'About me' } },
+  { href: '/projetos', label: { pt: 'Projetos', en: 'Projects' } },
+  { href: '/contato', label: { pt: 'Contato', en: 'Contact' } },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
+  const { lang, setLang } = useLang();
 
   return (
     <header style={{
@@ -46,10 +48,24 @@ export default function Nav() {
           {links.map(({ href, label }) => (
             <li key={href}>
               <Link href={href} className="nav-link" data-active={pathname === href ? 'true' : 'false'}>
-                {label}
+                {label[lang]}
               </Link>
             </li>
           ))}
+          <li>
+            <div className="lang-toggle" role="group" aria-label="Idioma / Language">
+              {(['pt', 'en'] as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  data-active={lang === l ? 'true' : 'false'}
+                  aria-pressed={lang === l}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </li>
         </ul>
       </nav>
     </header>

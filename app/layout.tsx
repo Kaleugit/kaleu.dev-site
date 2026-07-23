@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Nav from "./components/Nav";
+import { LanguageProvider } from "./components/LanguageProvider";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -16,8 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body style={{ backgroundColor: "var(--bg)", color: "var(--text)", minHeight: "100dvh", display: "flex", flexDirection: "column" }}>
+        <LanguageProvider>
         <Nav />
         <main style={{ flex: 1 }}>{children}</main>
+        </LanguageProvider>
         <footer style={{
           borderTop: '1px solid var(--border)',
           padding: '1.25rem 2rem',

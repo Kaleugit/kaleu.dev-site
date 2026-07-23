@@ -1,4 +1,20 @@
+"use client";
+
 import Image from "next/image";
+import { useT } from "../components/LanguageProvider";
+
+const dict = {
+  pt: {
+    kicker: "contato",
+    title: "Vamos conversar",
+    intro: "Aberto a projetos freelance, posições full-time e colaborações. Respondo em até 24h.",
+  },
+  en: {
+    kicker: "contact",
+    title: "Let's talk",
+    intro: "Open to freelance projects, full-time positions and collaborations. I reply within 24h.",
+  },
+};
 
 const channels = [
   {
@@ -24,6 +40,7 @@ const channels = [
 ];
 
 export default function Contato() {
+  const t = useT(dict);
   return (
     <section className="page-section">
       <div style={{ maxWidth: '56rem', margin: '0 auto', width: '100%' }}>
@@ -40,7 +57,7 @@ export default function Contato() {
               textTransform: 'uppercase',
               marginBottom: '1rem',
             }}>
-              contato
+              {t.kicker}
             </p>
 
             <h1 style={{
@@ -51,7 +68,7 @@ export default function Contato() {
               color: 'var(--text)',
               marginBottom: '1rem',
             }}>
-              Vamos conversar
+              {t.title}
             </h1>
 
             <p style={{
@@ -60,8 +77,7 @@ export default function Contato() {
               lineHeight: 1.65,
               marginBottom: '3rem',
             }}>
-              Aberto a projetos freelance, posições full-time e colaborações.
-              Respondo em até 24h.
+              {t.intro}
             </p>
 
             <div style={{ borderTop: '1px solid var(--border)' }}>

@@ -2,6 +2,7 @@ import { chromium } from 'playwright';
 import { mkdirSync } from 'node:fs';
 
 const label = process.argv[2] ?? 'shot';
+const lang = process.argv[3] ?? 'pt';
 const base = 'http://localhost:3000';
 
 const routes = [
@@ -27,6 +28,7 @@ mkdirSync(outDir, { recursive: true });
 const browser = await chromium.launch();
 for (const [vpName, viewport] of viewports) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
+  await page.addInitScript((l) => localStorage.setItem('lang', l), lang);
   for (const [name, path] of routes) {
     await page.goto(base + path, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(1200);

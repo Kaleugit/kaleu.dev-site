@@ -3,6 +3,110 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { useT } from "../../components/LanguageProvider";
+
+const dict = {
+  pt: {
+    back: "← Projetos",
+    title: "A Casa do Patrão",
+    description:
+      'Jogo interativo desenvolvido para o evento de lançamento do reality show "A Casa do Patrão" (The Walt Disney Company e Record TV), projetado para engajar patrocinadores e imprensa.',
+    accessBtn: "Acessar A Casa do Patrão →",
+    contextHeading: "O Contexto e o Desafio",
+    contextP1:
+      '"A Casa do Patrão" é um reality show de grande porte produzido pela The Walt Disney Company em parceria com a Record, com transmissão em TV aberta e na plataforma de streaming Disney+.',
+    contextP2:
+      "Para o evento oficial de lançamento da atração, direcionado exclusivamente a patrocinadores e veículos de imprensa, o desafio foi criar uma experiência interativa que trouxesse um pouco do universo do programa. O jogo foi desenvolvido para rodar de forma fluida durante o evento presencial, servindo como uma ativação dinâmica para os convidados, com um atrativo prêmio para o melhor colocado do ranking.",
+    contextP3:
+      "Como se tratou de um projeto de ativação temporária e focada em um momento específico, o domínio oficial de produção foi descontinuado após o encerramento do evento (jogodopatrao.imsite.com.br).",
+    contributionHeading: "Minha Contribuição",
+    contributionP1:
+      "Trabalhando em parceria direta com a IMsite, participei da implementação do ambiente interativo do jogo. Fui responsável pelo desenvolvimento completo do mapa em tempo real, pela modelagem e comportamento dos personagens, bem como pela mecânica e programação de todos os mini-games integrados à aplicação da versão curada disponibilizada aqui.",
+    contributionP2:
+      "Para este portfólio, desenvolvi uma versão de demonstração simplificada. Trata-se de uma réplica fiel da interface visual e das interações do jogo original, adaptada para funcionar de forma independente (client-side), sem a necessidade de conexão com o banco de dados de produção. O objetivo é demonstrar na prática os conceitos de computação gráfica na web e a fluidez do gameplay.",
+    architectureHeading: "Arquitetura e Engenharia de Software",
+    frontendLabel: "Motores Gráficos e Frontend",
+    frontendItems: [
+      {
+        title: "Three.js",
+        desc: "Utilizado para a construção e renderização do mapa principal do jogo. A integração foi realizada de forma leve utilizando ESM (importmap) diretamente no navegador, sem a necessidade de um empacotador (bundler) no build final.",
+      },
+      {
+        title: "GSAP + DiceBear",
+        desc: "Animações e geração de avatares procedurais integrados ao canvas Three.js.",
+      },
+      {
+        title: "Troika-three-text",
+        desc: "Renderização de texto em 3D integrada ao canvas Three.js.",
+      },
+    ],
+    backendLabel: "Backend e APIs",
+    backendItems: [
+      {
+        title: "Next.js 14 + Node.js Serverless",
+        desc: "Framework e runtime para as funções de backend, gerenciamento de rotas de API e renderização server-side.",
+      },
+      {
+        title: "Supabase (PostgreSQL)",
+        desc: "Banco de dados relacional para persistência do ranking, autenticação e chamadas RPC seguras.",
+      },
+      {
+        title: "Fila Offline com LocalStorage",
+        desc: "Para mitigar problemas de oscilação de internet comuns em eventos corporativos presenciais, a autenticação tradicional foi desabilitada. Um sistema de fila offline salvava temporariamente a pontuação do jogador no navegador (localStorage) e, através de chamadas RPC seguras, sincronizava os dados com o banco assim que a conexão era restabelecida.",
+      },
+    ],
+  },
+  en: {
+    back: "← Projects",
+    title: "A Casa do Patrão",
+    description:
+      'Interactive game built for the launch event of the reality show "A Casa do Patrão" (The Walt Disney Company and Record TV), designed to engage sponsors and press.',
+    accessBtn: "Visit A Casa do Patrão →",
+    contextHeading: "The Context and the Challenge",
+    contextP1:
+      '"A Casa do Patrão" is a large-scale reality show produced by The Walt Disney Company in partnership with Record TV, broadcast on open TV and on the Disney+ streaming platform.',
+    contextP2:
+      "For the show's official launch event, aimed exclusively at sponsors and press outlets, the challenge was to create an interactive experience that brought a piece of the show's universe to life. The game was built to run smoothly throughout the in-person event, serving as a dynamic activation for guests, with an attractive prize for the top player on the leaderboard.",
+    contextP3:
+      "Since this was a temporary activation focused on a specific moment, the official production domain was discontinued after the event ended (jogodopatrao.imsite.com.br).",
+    contributionHeading: "My Contribution",
+    contributionP1:
+      "Working in direct partnership with IMsite, I took part in implementing the game's interactive environment. I was responsible for the complete development of the real-time map, character modeling and behavior, as well as the mechanics and programming of all the mini-games integrated into the curated version available here.",
+    contributionP2:
+      "For this portfolio, I built a simplified demo version. It is a faithful replica of the original game's visual interface and interactions, adapted to run independently (client-side) without connecting to the production database. The goal is to showcase web graphics programming concepts and gameplay fluidity in practice.",
+    architectureHeading: "Architecture and Software Engineering",
+    frontendLabel: "Graphics Engines and Frontend",
+    frontendItems: [
+      {
+        title: "Three.js",
+        desc: "Used to build and render the game's main map. The integration was kept lightweight using ESM (importmap) directly in the browser, with no bundler required in the final build.",
+      },
+      {
+        title: "GSAP + DiceBear",
+        desc: "Animations and procedural avatar generation integrated into the Three.js canvas.",
+      },
+      {
+        title: "Troika-three-text",
+        desc: "3D text rendering integrated into the Three.js canvas.",
+      },
+    ],
+    backendLabel: "Backend and APIs",
+    backendItems: [
+      {
+        title: "Next.js 14 + Node.js Serverless",
+        desc: "Framework and runtime for backend functions, API route management, and server-side rendering.",
+      },
+      {
+        title: "Supabase (PostgreSQL)",
+        desc: "Relational database for leaderboard persistence, authentication, and secure RPC calls.",
+      },
+      {
+        title: "Offline Queue with LocalStorage",
+        desc: "To mitigate the unstable internet connections common at in-person corporate events, traditional authentication was disabled. An offline queue system temporarily stored the player's score in the browser (localStorage) and, through secure RPC calls, synced the data with the database as soon as the connection was restored.",
+      },
+    ],
+  },
+};
 
 const images = [
   { src: "/img3.png", alt: "A Casa do Patrão - mapa interativo" },
@@ -112,6 +216,7 @@ function Carousel() {
 }
 
 export default function ACasaDoPatrao() {
+  const t = useT(dict);
   return (
     <section className="detail-section">
       <div className="detail-container" style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
@@ -130,7 +235,7 @@ export default function ACasaDoPatrao() {
           onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
           onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
         >
-          ← Projetos
+          {t.back}
         </Link>
 
         {/* Cabeçalho */}
@@ -151,7 +256,7 @@ export default function ACasaDoPatrao() {
               color: "var(--text)",
               marginBottom: "0.75rem",
             }}>
-              A Casa do Patrão
+              {t.title}
             </h1>
             <p style={{
               fontSize: "1rem",
@@ -159,9 +264,7 @@ export default function ACasaDoPatrao() {
               lineHeight: 1.65,
               maxWidth: "36rem",
             }}>
-              Jogo interativo desenvolvido para o evento de lançamento do reality show
-              "A Casa do Patrão" (The Walt Disney Company e Record TV), projetado para
-              engajar patrocinadores e imprensa.
+              {t.description}
             </p>
           </div>
           <span style={{
@@ -190,7 +293,7 @@ export default function ACasaDoPatrao() {
             className="btn-primary"
             style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem" }}
           >
-            Acessar A Casa do Patrão →
+            {t.accessBtn}
           </a>
           <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
             {["Three.js", "Next.js 14", "Supabase", "Vercel"].map((tag) => (
@@ -207,50 +310,32 @@ export default function ACasaDoPatrao() {
 
           {/* Contexto */}
           <div>
-            <h2 style={headingStyle}>O Contexto e o Desafio</h2>
+            <h2 style={headingStyle}>{t.contextHeading}</h2>
             <p style={bodyStyle}>
-              "A Casa do Patrão" é um reality show de grande porte produzido pela The Walt
-              Disney Company em parceria com a Record, com transmissão em TV aberta e na
-              plataforma de streaming Disney+.
+              {t.contextP1}
             </p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-              Para o evento oficial de lançamento da atração, direcionado exclusivamente a
-              patrocinadores e veículos de imprensa, o desafio foi criar uma experiência
-              interativa que trouxesse um pouco do universo do programa. O jogo foi
-              desenvolvido para rodar de forma fluida durante o evento presencial, servindo
-              como uma ativação dinâmica para os convidados, com um atrativo prêmio para
-              o melhor colocado do ranking.
+              {t.contextP2}
             </p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-              Como se tratou de um projeto de ativação temporária e focada em um momento
-              específico, o domínio oficial de produção foi descontinuado após o
-              encerramento do evento (jogodopatrao.imsite.com.br).
+              {t.contextP3}
             </p>
           </div>
 
           {/* Contribuição */}
           <div>
-            <h2 style={headingStyle}>Minha Contribuição</h2>
+            <h2 style={headingStyle}>{t.contributionHeading}</h2>
             <p style={bodyStyle}>
-              Trabalhando em parceria direta com a IMsite, participei da implementação do
-              ambiente interativo do jogo. Fui responsável pelo desenvolvimento completo
-              do mapa em tempo real, pela modelagem e comportamento dos personagens, bem
-              como pela mecânica e programação de todos os mini-games integrados à
-              aplicação da versão curada disponibilizada aqui.
+              {t.contributionP1}
             </p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-              Para este portfólio, desenvolvi uma versão de demonstração simplificada.
-              Trata-se de uma réplica fiel da interface visual e das interações do jogo
-              original, adaptada para funcionar de forma independente (client-side), sem
-              a necessidade de conexão com o banco de dados de produção. O objetivo é
-              demonstrar na prática os conceitos de computação gráfica na web e a fluidez
-              do gameplay.
+              {t.contributionP2}
             </p>
           </div>
 
           {/* Arquitetura */}
           <div>
-            <h2 style={headingStyle}>Arquitetura e Engenharia de Software</h2>
+            <h2 style={headingStyle}>{t.architectureHeading}</h2>
 
             {/* Frontend */}
             <div style={{ marginTop: "1.5rem" }}>
@@ -262,23 +347,10 @@ export default function ACasaDoPatrao() {
                 textTransform: "uppercase",
                 marginBottom: "1rem",
               }}>
-                Motores Gráficos e Frontend
+                {t.frontendLabel}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--border)" }}>
-                {[
-                  {
-                    title: "Three.js",
-                    desc: "Utilizado para a construção e renderização do mapa principal do jogo. A integração foi realizada de forma leve utilizando ESM (importmap) diretamente no navegador, sem a necessidade de um empacotador (bundler) no build final.",
-                  },
-                  {
-                    title: "GSAP + DiceBear",
-                    desc: "Animações e geração de avatares procedurais integrados ao canvas Three.js.",
-                  },
-                  {
-                    title: "Troika-three-text",
-                    desc: "Renderização de texto em 3D integrada ao canvas Three.js.",
-                  },
-                ].map((item) => (
+                {t.frontendItems.map((item) => (
                   <div key={item.title} className="detail-row">
                     <p className="detail-row-title">
                       {item.title}
@@ -301,23 +373,10 @@ export default function ACasaDoPatrao() {
                 textTransform: "uppercase",
                 marginBottom: "1rem",
               }}>
-                Backend e APIs
+                {t.backendLabel}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--border)" }}>
-                {[
-                  {
-                    title: "Next.js 14 + Node.js Serverless",
-                    desc: "Framework e runtime para as funções de backend, gerenciamento de rotas de API e renderização server-side.",
-                  },
-                  {
-                    title: "Supabase (PostgreSQL)",
-                    desc: "Banco de dados relacional para persistência do ranking, autenticação e chamadas RPC seguras.",
-                  },
-                  {
-                    title: "Fila Offline com LocalStorage",
-                    desc: "Para mitigar problemas de oscilação de internet comuns em eventos corporativos presenciais, a autenticação tradicional foi desabilitada. Um sistema de fila offline salvava temporariamente a pontuação do jogador no navegador (localStorage) e, através de chamadas RPC seguras, sincronizava os dados com o banco assim que a conexão era restabelecida.",
-                  },
-                ].map((item) => (
+                {t.backendItems.map((item) => (
                   <div key={item.title} className="detail-row">
                     <p className="detail-row-title">
                       {item.title}

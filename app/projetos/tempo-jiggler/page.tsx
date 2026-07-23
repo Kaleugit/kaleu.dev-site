@@ -3,6 +3,104 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { useT } from "../../components/LanguageProvider";
+
+const dict = {
+  pt: {
+    back: "← Projetos",
+    description:
+      "Aplicativo desktop desenvolvido em Python para prevenir a inatividade do sistema operacional através de automação discreta de periféricos.",
+    githubBtn: "Ver no GitHub →",
+    contextHeading: "O Contexto e a Solução",
+    contextP1:
+      "O Tempo Jiggler é um utilitário de produtividade criado para resolver um problema cotidiano simples, mas recorrente: evitar que o computador entre em modo ocioso, ative o bloqueio de tela ou altere o status de presença em aplicativos de comunicação durante longos processos de leitura ou compilação.",
+    contextP2:
+      "Para resolver isso, desenvolvi uma aplicação desktop leve que simula interações humanas básicas diretamente com o sistema operacional, mantendo a máquina ativa sem interferir no fluxo de trabalho do usuário.",
+    featuresHeading: "Funcionalidades Principais",
+    featuresIntro: "O aplicativo conta com três módulos independentes de funcionamento:",
+    features: [
+      {
+        title: "Mouse Jiggler",
+        desc: "Executa micromovimentos automáticos no cursor do mouse a cada 30 segundos. O deslocamento é quase imperceptível a olho nu, mas suficiente para sinalizar atividade ao sistema operacional.",
+      },
+      {
+        title: "Text Jiggler",
+        desc: "Foca na automação de teclado, digitando e apagando caracteres sequencialmente em campos de texto, operando em intervalos de tempo configuráveis pelo usuário.",
+      },
+      {
+        title: "Timer com Alarme",
+        desc: "Um utilitário de contagem regressiva integrado. Ao zerar, emite um aviso sonoro.",
+      },
+    ],
+    archHeading: "Arquitetura e Engenharia do Software",
+    archItems: [
+      {
+        title: "Python 3 + CustomTkinter",
+        desc: "A interface gráfica foi construída com CustomTkinter, que oferece componentes modernos e suporte nativo a temas claro e escuro, sobre a base do Tkinter padrão da biblioteca padrão do Python.",
+      },
+      {
+        title: "PyAutoGUI + NumPy",
+        desc: "PyAutoGUI controla o mouse e o teclado em nível de sistema operacional. NumPy é utilizado para gerar os vetores de micromovimento do cursor de forma eficiente, garantindo que os deslocamentos sejam orgânicos e dentro de limites seguros da tela.",
+      },
+      {
+        title: "PyInstaller",
+        desc: "A aplicação é empacotada em um único executável standalone via PyInstaller, eliminando a necessidade de o usuário final ter Python instalado.",
+      },
+    ],
+    securityHeading: "Nota sobre Distribuição e Segurança",
+    securityP1:
+      "O software está empacotado e disponível para download. Por se tratar de um projeto pessoal, o executável foi gerado sem a assinatura de um certificado digital comercial da Microsoft. Como padrão de segurança contra arquivos desconhecidos, o Windows pode classificar o aplicativo como não reconhecido e bloquear a execução.",
+    securityP2:
+      "Para desenvolvedores e usuários com foco em segurança, o código-fonte está totalmente aberto. A recomendação é clonar o repositório e rodar o script diretamente pelo interpretador do Python, garantindo total transparência e controle sobre a execução.",
+  },
+  en: {
+    back: "← Projects",
+    description:
+      "Desktop application built in Python to prevent operating system inactivity through discreet peripheral automation.",
+    githubBtn: "View on GitHub →",
+    contextHeading: "The Context and the Solution",
+    contextP1:
+      "Tempo Jiggler is a productivity utility created to solve a simple yet recurring everyday problem: preventing the computer from going idle, triggering the lock screen, or changing presence status in communication apps during long reading or compilation processes.",
+    contextP2:
+      "To solve this, I built a lightweight desktop application that simulates basic human interactions directly with the operating system, keeping the machine active without interfering with the user's workflow.",
+    featuresHeading: "Key Features",
+    featuresIntro: "The application features three independent operating modules:",
+    features: [
+      {
+        title: "Mouse Jiggler",
+        desc: "Performs automatic micro-movements of the mouse cursor every 30 seconds. The displacement is nearly imperceptible to the naked eye, but enough to signal activity to the operating system.",
+      },
+      {
+        title: "Text Jiggler",
+        desc: "Focuses on keyboard automation, sequentially typing and deleting characters in text fields, operating at user-configurable time intervals.",
+      },
+      {
+        title: "Timer with Alarm",
+        desc: "A built-in countdown utility. When it reaches zero, it emits an audible alert.",
+      },
+    ],
+    archHeading: "Software Architecture and Engineering",
+    archItems: [
+      {
+        title: "Python 3 + CustomTkinter",
+        desc: "The graphical interface was built with CustomTkinter, which offers modern components and native light/dark theme support on top of Python's standard Tkinter library.",
+      },
+      {
+        title: "PyAutoGUI + NumPy",
+        desc: "PyAutoGUI controls the mouse and keyboard at the operating system level. NumPy is used to efficiently generate the cursor's micro-movement vectors, ensuring displacements are organic and within safe screen bounds.",
+      },
+      {
+        title: "PyInstaller",
+        desc: "The application is packaged into a single standalone executable via PyInstaller, eliminating the need for the end user to have Python installed.",
+      },
+    ],
+    securityHeading: "Note on Distribution and Security",
+    securityP1:
+      "The software is packaged and available for download. As a personal project, the executable was generated without a commercial Microsoft digital certificate signature. As a security standard against unknown files, Windows may classify the application as unrecognized and block execution.",
+    securityP2:
+      "For developers and security-minded users, the source code is fully open. The recommendation is to clone the repository and run the script directly through the Python interpreter, ensuring full transparency and control over execution.",
+  },
+};
 
 const images = [
   { src: "/img6.png", alt: "Tempo Jiggler - interface principal" },
@@ -112,6 +210,7 @@ function Carousel() {
 }
 
 export default function TempoJiggler() {
+  const t = useT(dict);
   return (
     <section className="detail-section">
       <div className="detail-container" style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
@@ -130,7 +229,7 @@ export default function TempoJiggler() {
           onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
           onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
         >
-          ← Projetos
+          {t.back}
         </Link>
 
         {/* Cabeçalho */}
@@ -159,8 +258,7 @@ export default function TempoJiggler() {
               lineHeight: 1.65,
               maxWidth: "36rem",
             }}>
-              Aplicativo desktop desenvolvido em Python para prevenir a inatividade do
-              sistema operacional através de automação discreta de periféricos.
+              {t.description}
             </p>
           </div>
           <span style={{
@@ -189,7 +287,7 @@ export default function TempoJiggler() {
             className="btn-primary"
             style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem" }}
           >
-            Ver no GitHub →
+            {t.githubBtn}
           </a>
           <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
             {["Python 3", "CustomTkinter", "PyAutoGUI", "NumPy", "PyInstaller"].map((tag) => (
@@ -206,41 +304,17 @@ export default function TempoJiggler() {
 
           {/* Contexto */}
           <div>
-            <h2 style={headingStyle}>O Contexto e a Solução</h2>
-            <p style={bodyStyle}>
-              O Tempo Jiggler é um utilitário de produtividade criado para resolver um
-              problema cotidiano simples, mas recorrente: evitar que o computador entre em
-              modo ocioso, ative o bloqueio de tela ou altere o status de presença em
-              aplicativos de comunicação durante longos processos de leitura ou compilação.
-            </p>
-            <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-              Para resolver isso, desenvolvi uma aplicação desktop leve que simula
-              interações humanas básicas diretamente com o sistema operacional, mantendo a
-              máquina ativa sem interferir no fluxo de trabalho do usuário.
-            </p>
+            <h2 style={headingStyle}>{t.contextHeading}</h2>
+            <p style={bodyStyle}>{t.contextP1}</p>
+            <p style={{ ...bodyStyle, marginTop: "1rem" }}>{t.contextP2}</p>
           </div>
 
           {/* Funcionalidades */}
           <div>
-            <h2 style={headingStyle}>Funcionalidades Principais</h2>
-            <p style={bodyStyle}>
-              O aplicativo conta com três módulos independentes de funcionamento:
-            </p>
+            <h2 style={headingStyle}>{t.featuresHeading}</h2>
+            <p style={bodyStyle}>{t.featuresIntro}</p>
             <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--border)" }}>
-              {[
-                {
-                  title: "Mouse Jiggler",
-                  desc: "Executa micromovimentos automáticos no cursor do mouse a cada 30 segundos. O deslocamento é quase imperceptível a olho nu, mas suficiente para sinalizar atividade ao sistema operacional.",
-                },
-                {
-                  title: "Text Jiggler",
-                  desc: "Foca na automação de teclado, digitando e apagando caracteres sequencialmente em campos de texto, operando em intervalos de tempo configuráveis pelo usuário.",
-                },
-                {
-                  title: "Timer com Alarme",
-                  desc: "Um utilitário de contagem regressiva integrado. Ao zerar, emite um aviso sonoro.",
-                },
-              ].map((item) => (
+              {t.features.map((item) => (
                 <div key={item.title} className="detail-row">
                   <p className="detail-row-title">
                     {item.title}
@@ -255,22 +329,9 @@ export default function TempoJiggler() {
 
           {/* Arquitetura */}
           <div>
-            <h2 style={headingStyle}>Arquitetura e Engenharia do Software</h2>
+            <h2 style={headingStyle}>{t.archHeading}</h2>
             <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--border)" }}>
-              {[
-                {
-                  title: "Python 3 + CustomTkinter",
-                  desc: "A interface gráfica foi construída com CustomTkinter, que oferece componentes modernos e suporte nativo a temas claro e escuro, sobre a base do Tkinter padrão da biblioteca padrão do Python.",
-                },
-                {
-                  title: "PyAutoGUI + NumPy",
-                  desc: "PyAutoGUI controla o mouse e o teclado em nível de sistema operacional. NumPy é utilizado para gerar os vetores de micromovimento do cursor de forma eficiente, garantindo que os deslocamentos sejam orgânicos e dentro de limites seguros da tela.",
-                },
-                {
-                  title: "PyInstaller",
-                  desc: "A aplicação é empacotada em um único executável standalone via PyInstaller, eliminando a necessidade de o usuário final ter Python instalado.",
-                },
-              ].map((item) => (
+              {t.archItems.map((item) => (
                 <div key={item.title} className="detail-row">
                   <p className="detail-row-title">
                     {item.title}
@@ -285,20 +346,9 @@ export default function TempoJiggler() {
 
           {/* Nota de segurança */}
           <div>
-            <h2 style={headingStyle}>Nota sobre Distribuição e Segurança</h2>
-            <p style={bodyStyle}>
-              O software está empacotado e disponível para download. Por se tratar de um
-              projeto pessoal, o executável foi gerado sem a assinatura de um certificado
-              digital comercial da Microsoft. Como padrão de segurança contra arquivos
-              desconhecidos, o Windows pode classificar o aplicativo como não reconhecido
-              e bloquear a execução.
-            </p>
-            <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-              Para desenvolvedores e usuários com foco em segurança, o código-fonte está
-              totalmente aberto. A recomendação é clonar o repositório e rodar o script
-              diretamente pelo interpretador do Python, garantindo total transparência e
-              controle sobre a execução.
-            </p>
+            <h2 style={headingStyle}>{t.securityHeading}</h2>
+            <p style={bodyStyle}>{t.securityP1}</p>
+            <p style={{ ...bodyStyle, marginTop: "1rem" }}>{t.securityP2}</p>
           </div>
 
         </div>

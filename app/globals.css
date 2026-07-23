@@ -60,21 +60,57 @@ html {
 
 @media (max-width: 640px) {
   .nav-inner {
-    padding: 0 1rem;
+    padding: 0 1rem 0 0.5rem;
   }
 
   .nav-list {
-    gap: 1.25rem;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
   }
 
   .nav-logo {
-    height: 2rem;
+    height: 1.75rem;
   }
 }
 
 .nav-link:hover,
 .nav-link[data-active="true"] {
   color: var(--text);
+}
+
+.lang-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.lang-toggle button {
+  padding: 0.3rem 0.65rem;
+  background: transparent;
+  border: none;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.lang-toggle button[data-active="true"] {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+@media (max-width: 640px) {
+  .lang-toggle button {
+    padding: 0.35rem 0.5rem;
+  }
 }
 
 .btn-primary {

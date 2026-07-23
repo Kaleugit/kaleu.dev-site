@@ -3,6 +3,102 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { useT } from "../../components/LanguageProvider";
+
+const dict = {
+  pt: {
+    back: "← Projetos",
+    title: "Moldura",
+    intro: "Adiciona bordas brancas ou pretas para impressão de fotos 15x10, preservando a composição e a proporção original.",
+    cta: "Acessar Moldura →",
+    contextTitle: "O Contexto e o Problema",
+    contextP1: "Como entusiasta da fotografia, acredito que imprimir e guardar fotos fisicamente é uma experiência incrível, especialmente para presentear pessoas queridas. No entanto, ao tentar imprimir minhas fotos, me deparei com um problema técnico no mercado que prejudicava muito o resultado final.",
+    contextP2: "Enquanto o padrão de revelação física das gráficas utiliza a proporção 15:10 (herança das câmeras analógicas), a grande maioria dos smartphones captura imagens na proporção 16:9. Para compensar essa diferença, as empresas de impressão aplicam cortes automáticos para forçar o encaixe da foto no papel. Isso destrói a composição original da imagem e, devido ao processamento em lote agressivo, frequentemente resulta em perda de qualidade.",
+    solutionTitle: "A Solução",
+    solutionP1: "Para resolver essa incompatibilidade sem comprometer as imagens, desenvolvi o Moldura. Uma ferramenta simples, rápida e eficiente que prepara fotos digitais para o formato de impressão sem realizar nenhum corte, adicionando um preenchimento inteligente.",
+    featuresTitle: "Funcionalidades Principais",
+    features: [
+      {
+        title: "Preservação da Composição",
+        desc: "Adiciona molduras (brancas ou pretas) para adaptar qualquer proporção para 15:10 sem cortar a imagem.",
+      },
+      {
+        title: "Orientação Dinâmica",
+        desc: "Ajuste manual para fotos na horizontal ou vertical.",
+      },
+      {
+        title: "Produtividade",
+        desc: "Suporte completo para upload e download de imagens em lote, mantendo a qualidade original.",
+      },
+      {
+        title: "Acessibilidade",
+        desc: "Interface internacionalizada, disponível em Português e Inglês.",
+      },
+    ],
+    techTitle: "Destaque Técnico: Privacidade e Performance",
+    techP1: "Um dos maiores diferenciais da aplicação é a sua arquitetura. Toda a lógica de manipulação e ajuste das imagens acontece exclusivamente no navegador (client-side). Nenhuma foto é enviada para servidores externos, o que garante três pilares fundamentais:",
+    pillars: [
+      {
+        title: "Privacidade Absoluta",
+        desc: "O usuário tem controle total sobre seus arquivos em sua própria máquina.",
+      },
+      {
+        title: "Segurança",
+        desc: "Zero risco de interceptação ou vazamento de dados e fotos pessoais.",
+      },
+      {
+        title: "Agilidade",
+        desc: "Processamento imediato, sem o tempo de espera tradicional de upload e download em servidores de terceiros.",
+      },
+    ],
+  },
+  en: {
+    back: "← Projects",
+    title: "Moldura",
+    intro: "Adds white or black borders for 15x10 photo printing, preserving the original composition and aspect ratio.",
+    cta: "Open Moldura →",
+    contextTitle: "Context and Problem",
+    contextP1: "As a photography enthusiast, I believe that printing and keeping physical photos is an incredible experience, especially as a gift for loved ones. However, when trying to print my own photos, I ran into a technical problem in the market that severely compromised the final result.",
+    contextP2: "While print shops use the 15:10 aspect ratio as their physical printing standard (a legacy of analog cameras), the vast majority of smartphones capture images at 16:9. To compensate for this difference, printing companies apply automatic crops to force the photo to fit the paper. This destroys the image's original composition and, due to aggressive batch processing, frequently results in quality loss.",
+    solutionTitle: "The Solution",
+    solutionP1: "To solve this incompatibility without compromising the images, I built Moldura. A simple, fast, and efficient tool that prepares digital photos for print format without any cropping, by adding smart padding instead.",
+    featuresTitle: "Key Features",
+    features: [
+      {
+        title: "Composition Preservation",
+        desc: "Adds borders (white or black) to adapt any aspect ratio to 15:10 without cropping the image.",
+      },
+      {
+        title: "Dynamic Orientation",
+        desc: "Manual adjustment for horizontal or vertical photos.",
+      },
+      {
+        title: "Productivity",
+        desc: "Full support for batch image upload and download, preserving the original quality.",
+      },
+      {
+        title: "Accessibility",
+        desc: "Internationalized interface, available in Portuguese and English.",
+      },
+    ],
+    techTitle: "Technical Highlight: Privacy and Performance",
+    techP1: "One of the application's biggest differentiators is its architecture. All image manipulation and adjustment logic runs exclusively in the browser (client-side). No photo is ever sent to external servers, which guarantees three fundamental pillars:",
+    pillars: [
+      {
+        title: "Absolute Privacy",
+        desc: "Users keep full control over their files on their own machine.",
+      },
+      {
+        title: "Security",
+        desc: "Zero risk of interception or leakage of personal data and photos.",
+      },
+      {
+        title: "Speed",
+        desc: "Instant processing, with none of the traditional wait times for uploading and downloading through third-party servers.",
+      },
+    ],
+  },
+};
 
 const images = [
   { src: "/img1.png", alt: "Moldura - tela principal" },
@@ -120,6 +216,7 @@ function Carousel() {
 }
 
 export default function Moldura() {
+  const t = useT(dict);
   return (
     <section className="detail-section">
       <div className="detail-container" style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
@@ -138,7 +235,7 @@ export default function Moldura() {
           onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
           onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
         >
-          ← Projetos
+          {t.back}
         </Link>
 
         {/* Cabeçalho */}
@@ -159,7 +256,7 @@ export default function Moldura() {
               color: "var(--text)",
               marginBottom: "0.75rem",
             }}>
-              Moldura
+              {t.title}
             </h1>
             <p style={{
               fontSize: "1rem",
@@ -167,8 +264,7 @@ export default function Moldura() {
               lineHeight: 1.65,
               maxWidth: "36rem",
             }}>
-              Adiciona bordas brancas ou pretas para impressão de fotos 15x10,
-              preservando a composição e a proporção original.
+              {t.intro}
             </p>
           </div>
           <span style={{
@@ -197,7 +293,7 @@ export default function Moldura() {
             className="btn-primary"
             style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem" }}
           >
-            Acessar Moldura →
+            {t.cta}
           </a>
           <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
             {["Next.js 16", "React 19", "Vercel"].map((tag) => (
@@ -214,56 +310,28 @@ export default function Moldura() {
 
           {/* Contexto */}
           <div>
-            <h2 style={headingStyle}>O Contexto e o Problema</h2>
+            <h2 style={headingStyle}>{t.contextTitle}</h2>
             <p style={bodyStyle}>
-              Como entusiasta da fotografia, acredito que imprimir e guardar fotos fisicamente
-              é uma experiência incrível, especialmente para presentear pessoas queridas.
-              No entanto, ao tentar imprimir minhas fotos, me deparei com um problema técnico
-              no mercado que prejudicava muito o resultado final.
+              {t.contextP1}
             </p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>
-              Enquanto o padrão de revelação física das gráficas utiliza a proporção 15:10
-              (herança das câmeras analógicas), a grande maioria dos smartphones captura
-              imagens na proporção 16:9. Para compensar essa diferença, as empresas de
-              impressão aplicam cortes automáticos para forçar o encaixe da foto no papel.
-              Isso destrói a composição original da imagem e, devido ao processamento em
-              lote agressivo, frequentemente resulta em perda de qualidade.
+              {t.contextP2}
             </p>
           </div>
 
           {/* Solução */}
           <div>
-            <h2 style={headingStyle}>A Solução</h2>
+            <h2 style={headingStyle}>{t.solutionTitle}</h2>
             <p style={bodyStyle}>
-              Para resolver essa incompatibilidade sem comprometer as imagens, desenvolvi
-              o Moldura. Uma ferramenta simples, rápida e eficiente que prepara fotos
-              digitais para o formato de impressão sem realizar nenhum corte, adicionando
-              um preenchimento inteligente.
+              {t.solutionP1}
             </p>
           </div>
 
           {/* Funcionalidades */}
           <div>
-            <h2 style={headingStyle}>Funcionalidades Principais</h2>
+            <h2 style={headingStyle}>{t.featuresTitle}</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginTop: "1.5rem" }}>
-              {[
-                {
-                  title: "Preservação da Composição",
-                  desc: "Adiciona molduras (brancas ou pretas) para adaptar qualquer proporção para 15:10 sem cortar a imagem.",
-                },
-                {
-                  title: "Orientação Dinâmica",
-                  desc: "Ajuste manual para fotos na horizontal ou vertical.",
-                },
-                {
-                  title: "Produtividade",
-                  desc: "Suporte completo para upload e download de imagens em lote, mantendo a qualidade original.",
-                },
-                {
-                  title: "Acessibilidade",
-                  desc: "Interface internacionalizada, disponível em Português e Inglês.",
-                },
-              ].map((item) => (
+              {t.features.map((item) => (
                 <div key={item.title} style={{
                   padding: "1.25rem",
                   background: "var(--surface)",
@@ -288,28 +356,12 @@ export default function Moldura() {
 
           {/* Destaque Técnico */}
           <div>
-            <h2 style={headingStyle}>Destaque Técnico: Privacidade e Performance</h2>
+            <h2 style={headingStyle}>{t.techTitle}</h2>
             <p style={bodyStyle}>
-              Um dos maiores diferenciais da aplicação é a sua arquitetura. Toda a lógica
-              de manipulação e ajuste das imagens acontece exclusivamente no navegador
-              (client-side). Nenhuma foto é enviada para servidores externos, o que garante
-              três pilares fundamentais:
+              {t.techP1}
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0", marginTop: "1.5rem", borderTop: "1px solid var(--border)" }}>
-              {[
-                {
-                  title: "Privacidade Absoluta",
-                  desc: "O usuário tem controle total sobre seus arquivos em sua própria máquina.",
-                },
-                {
-                  title: "Segurança",
-                  desc: "Zero risco de interceptação ou vazamento de dados e fotos pessoais.",
-                },
-                {
-                  title: "Agilidade",
-                  desc: "Processamento imediato, sem o tempo de espera tradicional de upload e download em servidores de terceiros.",
-                },
-              ].map((item) => (
+              {t.pillars.map((item) => (
                 <div key={item.title} style={{
                   padding: "1.25rem 0",
                   borderBottom: "1px solid var(--border)",
