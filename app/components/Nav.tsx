@@ -24,24 +24,15 @@ export default function Nav() {
       backgroundColor: 'rgba(9, 9, 11, 0.8)',
       backdropFilter: 'blur(12px)',
     }}>
-      <nav style={{
-        maxWidth: '72rem',
-        margin: '0 auto',
-        padding: '0 2rem',
-        height: '3.5rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
+      <nav className="nav-inner">
         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <Image
             src="/logo2.png"
             alt="kaleu"
             width={90}
             height={40}
+            className="nav-logo"
             style={{
-              height: '2.5rem',
-              width: 'auto',
               objectFit: 'contain',
               maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)',
               maskComposite: 'intersect',
@@ -51,7 +42,7 @@ export default function Nav() {
           />
         </Link>
 
-        <ul style={{ display: 'flex', alignItems: 'center', gap: '2rem', listStyle: 'none' }}>
+        <ul className="nav-list">
           {links.map(({ href, label }) => (
             <li key={href}>
               <Link href={href} className="nav-link" data-active={pathname === href ? 'true' : 'false'}>

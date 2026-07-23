@@ -38,17 +38,7 @@ export default function AlternatingImage() {
   return (
     <div style={{ width: '100%' }}>
       {/* Foto 9:16 */}
-      <div
-        onClick={handleImageClick}
-        style={{
-          position: 'relative',
-          width: '100%',
-          aspectRatio: '9 / 16',
-          borderRadius: '0.75rem',
-          overflow: 'hidden',
-          cursor: 'pointer',
-        }}
-      >
+      <div className="carousel-frame" onClick={handleImageClick}>
         {images.map((src, i) => (
           <Image
             key={src}
@@ -68,12 +58,7 @@ export default function AlternatingImage() {
       </div>
 
       {/* Setas — fora da foto */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '0.75rem',
-        marginTop: '0.875rem',
-      }}>
+      <div className="carousel-arrows">
         {[
           { label: '←', action: () => goTo((index - 1 + images.length) % images.length) },
           { label: '→', action: () => goTo((index + 1) % images.length) },

@@ -25,15 +25,10 @@ const channels = [
 
 export default function Contato() {
   return (
-    <section style={{ padding: '8rem 2rem 5rem' }}>
+    <section className="page-section">
       <div style={{ maxWidth: '56rem', margin: '0 auto', width: '100%' }}>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr minmax(0, 340px)',
-          gap: '4rem',
-          alignItems: 'start',
-        }}>
+        <div className="contact-grid">
 
           {/* Texto + canais */}
           <div>
@@ -101,6 +96,7 @@ export default function Contato() {
 
           {/* Foto */}
           <Image
+            className="contact-photo"
             src="/bg2.jpeg"
             alt=""
             width={340}

@@ -23,7 +23,7 @@ const stats = [
 
 export default function SobreMim() {
   return (
-    <section style={{ padding: '8rem 2rem 5rem' }}>
+    <section className="page-section">
       <div style={{ maxWidth: '56rem', margin: '0 auto', width: '100%' }}>
 
         <p style={{
@@ -49,12 +49,7 @@ export default function SobreMim() {
         </h1>
 
         {/* Foto + Bio lado a lado */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 500px) 1fr',
-          gap: '4rem',
-          alignItems: 'start',
-        }}>
+        <div className="about-grid">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <Image
               src="/kl1.jpeg"
@@ -105,11 +100,7 @@ export default function SobreMim() {
           }}>
             Projetos: stacks &amp; frameworks
           </p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '0.5rem',
-          }}>
+          <div className="stack-grid">
             {projectStack.map(({ name, lang, framework, db }) => (
               <div
                 key={name}

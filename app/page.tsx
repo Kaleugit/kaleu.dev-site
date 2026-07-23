@@ -3,19 +3,9 @@ import AlternatingImage from "./components/AlternatingImage";
 
 export default function Home() {
   return (
-    <section style={{
-      minHeight: '100dvh',
-      display: 'flex',
-      alignItems: 'center',
-      padding: '6rem 2rem 3rem',
-    }}>
+    <section className="hero-section">
       <div style={{ maxWidth: '56rem', margin: '0 auto', width: '100%' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr minmax(0, 300px)',
-          gap: '4rem',
-          alignItems: 'center',
-        }}>
+        <div className="hero-grid">
 
           {/* Texto */}
           <div>
@@ -68,7 +58,9 @@ export default function Home() {
           </div>
 
           {/* Foto */}
-          <AlternatingImage />
+          <div className="hero-photo">
+            <AlternatingImage />
+          </div>
 
         </div>
       </div>

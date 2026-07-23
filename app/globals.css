@@ -28,11 +28,48 @@ html {
   color: #fff;
 }
 
+.nav-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
 .nav-link {
   font-size: 0.875rem;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.nav-logo {
+  height: 2.5rem;
+  width: auto;
+}
+
+@media (max-width: 640px) {
+  .nav-inner {
+    padding: 0 1rem;
+  }
+
+  .nav-list {
+    gap: 1.25rem;
+  }
+
+  .nav-logo {
+    height: 2rem;
+  }
 }
 
 .nav-link:hover,
@@ -72,6 +109,225 @@ html {
 .btn-ghost:hover {
   color: var(--text);
   border-color: var(--muted);
+}
+
+/* Hero (home) */
+.hero-section {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 2rem 3rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 300px);
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-photo {
+  width: 100%;
+}
+
+.carousel-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.carousel-arrows {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.875rem;
+}
+
+.carousel-nav,
+.carousel-dot,
+.carousel-arrows button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Alvos de toque >= 44px no mobile (recomendação Apple/WCAG) */
+@media (max-width: 768px) {
+  /* Nos projetos o mobile usa swipe; setas desnecessárias */
+  .carousel-nav {
+    display: none !important;
+  }
+
+  .carousel-dot {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+    position: relative;
+  }
+
+  .carousel-dot::after {
+    content: "";
+    position: absolute;
+    inset: -0.875rem;
+  }
+
+  .carousel-arrows button {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 0.8125rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3.5rem 1.5rem 3rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  /* Carrossel vira header full-bleed com fade pro fundo */
+  .hero-photo {
+    order: -1;
+    margin: 0 -1.5rem;
+    width: auto;
+  }
+
+  .carousel-frame {
+    aspect-ratio: auto;
+    height: 42vh;
+    border-radius: 0;
+  }
+
+  .carousel-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(9, 9, 11, 0.3) 0%, transparent 30%, transparent 55%, var(--bg) 100%);
+  }
+
+  .carousel-arrows {
+    justify-content: center;
+    margin-top: -2.5rem;
+    position: relative;
+    z-index: 3;
+  }
+}
+
+/* Páginas internas — padding padrão */
+.page-section {
+  padding: 8rem 2rem 5rem;
+}
+
+.detail-section {
+  padding: 8rem 2rem 6rem;
+}
+
+@media (max-width: 768px) {
+  .page-section {
+    padding: 6.5rem 1.5rem 3.5rem;
+  }
+
+  .detail-section {
+    padding: 6.5rem 1.5rem 4rem;
+  }
+
+  /* Mobile: foto/carrossel acima dos textos */
+  .detail-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail-back {
+    order: -3;
+  }
+
+  .detail-media {
+    order: -2;
+  }
+}
+
+/* Detalhe de projeto — linhas título + descrição */
+.detail-row {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.detail-row-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  min-width: 10rem;
+  flex-shrink: 0;
+}
+
+.detail-row-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .detail-row {
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .detail-row-title {
+    min-width: 0;
+  }
+}
+
+/* Contato */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 340px);
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .contact-photo {
+    order: -1;
+  }
+}
+
+/* Sobre mim */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 500px) 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tag {

@@ -45,7 +45,7 @@ const projects = [
 
 export default function Projetos() {
   return (
-    <section style={{ padding: "8rem 2rem 5rem" }}>
+    <section className="page-section">
       <div style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
 
         <p style={{

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const images = [
   { src: "/img3.png", alt: "A Casa do Patrão - mapa interativo" },
@@ -16,10 +16,23 @@ function Carousel() {
   const prev = () => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
   const next = () => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
 
+  const touchStart = useRef<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStart.current;
+    touchStart.current = null;
+    if (Math.abs(dx) > 45) (dx < 0 ? next : prev)();
+  };
+
+
   return (
     <div style={{ marginBottom: "4rem" }}>
-      <div style={{
+      <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} style={{
         position: "relative",
+        touchAction: "pan-y",
         width: "100%",
         aspectRatio: "16/9",
         background: "var(--surface)",
@@ -36,7 +49,7 @@ function Carousel() {
         />
         <button
           onClick={prev}
-          aria-label="Imagem anterior"
+          className="carousel-nav" aria-label="Imagem anterior"
           style={{
             position: "absolute",
             left: "1rem",
@@ -56,7 +69,7 @@ function Carousel() {
         </button>
         <button
           onClick={next}
-          aria-label="Próxima imagem"
+          className="carousel-nav" aria-label="Próxima imagem"
           style={{
             position: "absolute",
             right: "1rem",
@@ -80,7 +93,7 @@ function Carousel() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            aria-label={`Ir para imagem ${i + 1}`}
+            className="carousel-dot" aria-label={`Ir para imagem ${i + 1}`}
             style={{
               width: "0.5rem",
               height: "0.5rem",
@@ -100,11 +113,11 @@ function Carousel() {
 
 export default function ACasaDoPatrao() {
   return (
-    <section style={{ padding: "8rem 2rem 6rem" }}>
-      <div style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
+    <section className="detail-section">
+      <div className="detail-container" style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
 
         {/* Voltar */}
-        <Link href="/projetos" style={{
+        <Link href="/projetos" className="detail-back" style={{
           display: "inline-flex",
           alignItems: "center",
           gap: "0.5rem",
@@ -187,7 +200,7 @@ export default function ACasaDoPatrao() {
         </div>
 
         {/* Carrossel */}
-        <Carousel />
+        <div className="detail-media"><Carousel /></div>
 
         {/* Conteúdo */}
         <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
@@ -266,23 +279,11 @@ export default function ACasaDoPatrao() {
                     desc: "Renderização de texto em 3D integrada ao canvas Three.js.",
                   },
                 ].map((item) => (
-                  <div key={item.title} style={{
-                    padding: "1.25rem 0",
-                    borderBottom: "1px solid var(--border)",
-                    display: "flex",
-                    gap: "2rem",
-                    alignItems: "flex-start",
-                  }}>
-                    <p style={{
-                      fontSize: "0.875rem",
-                      fontWeight: 500,
-                      color: "var(--text)",
-                      minWidth: "10rem",
-                      flexShrink: 0,
-                    }}>
+                  <div key={item.title} className="detail-row">
+                    <p className="detail-row-title">
                       {item.title}
                     </p>
-                    <p style={{ fontSize: "0.875rem", color: "var(--muted)", lineHeight: 1.6 }}>
+                    <p className="detail-row-desc">
                       {item.desc}
                     </p>
                   </div>
@@ -317,23 +318,11 @@ export default function ACasaDoPatrao() {
                     desc: "Para mitigar problemas de oscilação de internet comuns em eventos corporativos presenciais, a autenticação tradicional foi desabilitada. Um sistema de fila offline salvava temporariamente a pontuação do jogador no navegador (localStorage) e, através de chamadas RPC seguras, sincronizava os dados com o banco assim que a conexão era restabelecida.",
                   },
                 ].map((item) => (
-                  <div key={item.title} style={{
-                    padding: "1.25rem 0",
-                    borderBottom: "1px solid var(--border)",
-                    display: "flex",
-                    gap: "2rem",
-                    alignItems: "flex-start",
-                  }}>
-                    <p style={{
-                      fontSize: "0.875rem",
-                      fontWeight: 500,
-                      color: "var(--text)",
-                      minWidth: "10rem",
-                      flexShrink: 0,
-                    }}>
+                  <div key={item.title} className="detail-row">
+                    <p className="detail-row-title">
                       {item.title}
                     </p>
-                    <p style={{ fontSize: "0.875rem", color: "var(--muted)", lineHeight: 1.6 }}>
+                    <p className="detail-row-desc">
                       {item.desc}
                     </p>
                   </div>
