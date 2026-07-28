@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useT } from "../components/LanguageProvider";
+import { useLang, useT } from "../components/LanguageProvider";
+
+const PDF_VERSION = "v2";
 
 const dict = {
   pt: {
@@ -12,6 +14,7 @@ const dict = {
     p3: "Meu grande objetivo profissional é dedicar essa base técnica a um projeto sólido e duradouro, que gere impacto direto e real na qualidade de vida de pessoas em situação de vulnerabilidade. Para estar à altura desse desafio, mantenho uma rotina contínua de estudos e atualização sobre novas tecnologias.",
     p4: "Encaro o desenvolvimento web, móvel e de software como minha profissão e responsabilidade a longo prazo. No entanto, valorizo profundamente o tempo desconectado. Sou um amante da natureza e encontro meu equilíbrio no esporte e em atividades ao ar livre. No futuro, planejo expandir essa paixão academicamente, realizando uma pós-graduação e um mestrado na área esportiva.",
     stackTitle: "Projetos: stacks & frameworks",
+    cvBtn: "Ver currículo",
     stats: [
       { value: "3+", label: "Anos de experiência" },
       { value: "15+", label: "Projetos entregues" },
@@ -26,6 +29,7 @@ const dict = {
     p3: "My biggest professional goal is to dedicate this technical foundation to a solid, long-lasting project that creates direct, real impact on the quality of life of people in vulnerable situations. To be up to that challenge, I keep a continuous routine of study and staying current with new technologies.",
     p4: "I see web, mobile, and software development as my long-term profession and responsibility. That said, I deeply value time offline. I'm a nature lover and find my balance in sports and outdoor activities. In the future, I plan to take this passion further academically, pursuing a postgraduate degree and a master's in the sports field.",
     stackTitle: "Projects: stacks & frameworks",
+    cvBtn: "View resume",
     stats: [
       { value: "3+", label: "Years of experience" },
       { value: "15+", label: "Projects delivered" },
@@ -51,6 +55,8 @@ const projectStack = [
 
 export default function SobreMim() {
   const t = useT(dict);
+  const { lang } = useLang();
+  const cvPdf = `${lang === "pt" ? "/kaleu-pt26-updated.pdf" : "/kaleu-e26-updated.pdf"}?${PDF_VERSION}`;
   return (
     <section className="page-section">
       <div style={{ maxWidth: '56rem', margin: '0 auto', width: '100%' }}>
@@ -103,6 +109,9 @@ export default function SobreMim() {
                 {p}
               </p>
             ))}
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.75rem' }}>
+              <a href={cvPdf} target="_blank" rel="noopener noreferrer" className="btn-primary">{t.cvBtn}</a>
+            </div>
           </div>
         </div>
 
