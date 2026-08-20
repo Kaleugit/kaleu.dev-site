@@ -12,7 +12,15 @@ const dict = {
     intro: "Rastreador de candidaturas que transforma um link de vaga em dados acionáveis: um pipeline assíncrono na AWS lê a página, extrai as skills exigidas e cruza com o seu currículo para mostrar o gap entre o que o mercado pede e o que você tem.",
     cta: "Ver ao vivo →",
     github: "GitHub →",
-    testLogin: "login de teste: admin / admin",
+    testLogin: "login de teste: user1 / user1",
+    modalTitle: "Antes de entrar",
+    modalDesc: "O app fica atrás de uma tela de login e não tem cadastro aberto — use as credenciais de teste:",
+    modalUser: "usuário",
+    modalPass: "senha",
+    modalCopy: "copiar",
+    modalCopied: "copiado!",
+    modalOpen: "Abrir o app →",
+    modalCancel: "Voltar",
     contextTitle: "O Contexto e o Desafio",
     contextP1: "A busca por emprego é cega: você aplica para dezenas de vagas sem saber quais skills se repetem no mercado que está mirando, e adaptar o currículo para cada vaga à mão é caro demais para ser viável. O Jobscope resolve isso invertendo o fluxo — você cola a URL da vaga e um pipeline assíncrono lê a página, identifica empresa e cargo e extrai as skills exigidas. Ao enviar seu currículo, o dashboard cruza o que o mercado pede com o que você tem.",
     contextP2: "O desafio técnico foi rodar tudo isso 100% serverless, com a infraestrutura inteira versionada como código e custo mensal zero, dentro do free tier da AWS.",
@@ -63,7 +71,15 @@ const dict = {
     intro: "Job application tracker that turns a posting link into actionable data: an async AWS pipeline reads the page, extracts the required skills and matches them against your resume to show the gap between what the market asks for and what you have.",
     cta: "View live →",
     github: "GitHub →",
-    testLogin: "test login: admin / admin",
+    testLogin: "test login: user1 / user1",
+    modalTitle: "Before you enter",
+    modalDesc: "The app sits behind a login screen and has no open sign-up — use the test credentials:",
+    modalUser: "user",
+    modalPass: "password",
+    modalCopy: "copy",
+    modalCopied: "copied!",
+    modalOpen: "Open the app →",
+    modalCancel: "Back",
     contextTitle: "Context and Challenge",
     contextP1: "Job hunting is blind: you apply to dozens of postings without knowing which skills keep repeating in the market you're aiming at, and tailoring your resume for each posting by hand is too expensive to be viable. Jobscope solves this by inverting the flow — you paste the posting URL and an async pipeline reads the page, identifies company and role, and extracts the required skills. Once you upload your resume, the dashboard matches what the market asks for against what you have.",
     contextP2: "The technical challenge was running all of it 100% serverless, with the entire infrastructure versioned as code and a monthly cost of zero, inside the AWS free tier.",
@@ -217,8 +233,21 @@ function Carousel() {
   );
 }
 
+const LIVE_URL = "https://d1kvuqf3mt7qda.cloudfront.net";
+const TEST_CREDENTIAL = "user1";
+
 export default function Jobscope() {
   const t = useT(dict);
+  const [showLogin, setShowLogin] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyCredential = () => {
+    navigator.clipboard.writeText(TEST_CREDENTIAL).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
   return (
     <section className="detail-section">
       <div className="detail-container" style={{ maxWidth: "56rem", margin: "0 auto", width: "100%" }}>
@@ -288,15 +317,13 @@ export default function Jobscope() {
           marginBottom: "3rem",
           flexWrap: "wrap",
         }}>
-          <a
-            href="https://d1kvuqf3mt7qda.cloudfront.net"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setShowLogin(true)}
             className="btn-primary"
-            style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem" }}
+            style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem", border: "none", cursor: "pointer" }}
           >
             {t.cta}
-          </a>
+          </button>
           <span style={{
             fontSize: "0.72rem",
             fontFamily: "var(--font-geist-mono)",
@@ -329,6 +356,114 @@ export default function Jobscope() {
             ))}
           </div>
         </div>
+
+        {/* Modal de credenciais de teste */}
+        {showLogin && (
+          <div
+            onClick={() => setShowLogin(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(9,9,11,0.75)",
+              zIndex: 50,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "1.5rem",
+            }}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label={t.modalTitle}
+              style={{
+                background: "var(--bg)",
+                border: "1px solid var(--border)",
+                borderRadius: "0.75rem",
+                padding: "2rem",
+                maxWidth: "26rem",
+                width: "100%",
+              }}
+            >
+              <h3 style={{
+                fontSize: "1.125rem",
+                fontWeight: 600,
+                color: "var(--text)",
+                letterSpacing: "-0.01em",
+                marginBottom: "0.75rem",
+              }}>
+                {t.modalTitle}
+              </h3>
+              <p style={{
+                fontSize: "0.875rem",
+                color: "var(--muted)",
+                lineHeight: 1.65,
+                marginBottom: "1.25rem",
+              }}>
+                {t.modalDesc}
+              </p>
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "0.75rem",
+                border: "1px solid var(--border)",
+                borderRadius: "0.5rem",
+                padding: "0.75rem 1rem",
+                marginBottom: "1.5rem",
+                fontFamily: "var(--font-geist-mono)",
+                fontSize: "0.8125rem",
+              }}>
+                <span style={{ color: "var(--text)" }}>
+                  {t.modalUser}: user1 · {t.modalPass}: user1
+                </span>
+                <button
+                  onClick={copyCredential}
+                  style={{
+                    background: "transparent",
+                    border: "1px solid var(--border)",
+                    borderRadius: "0.375rem",
+                    color: copied ? "var(--accent)" : "var(--muted)",
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "0.72rem",
+                    padding: "0.3rem 0.6rem",
+                    cursor: "pointer",
+                    flexShrink: 0,
+                    transition: "color 0.15s ease",
+                  }}
+                >
+                  {copied ? t.modalCopied : t.modalCopy}
+                </button>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <a
+                  href={LIVE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                  style={{ fontSize: "0.8125rem", padding: "0.5rem 1rem" }}
+                  onClick={() => setShowLogin(false)}
+                >
+                  {t.modalOpen}
+                </a>
+                <button
+                  onClick={() => setShowLogin(false)}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: "var(--muted)",
+                    fontSize: "0.8125rem",
+                    cursor: "pointer",
+                    padding: "0.5rem 0",
+                  }}
+                >
+                  {t.modalCancel}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Carrossel */}
         <div className="detail-media"><Carousel /></div>
