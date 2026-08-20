@@ -301,7 +301,7 @@ html {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text);
-  min-width: 10rem;
+  width: 11rem;
   flex-shrink: 0;
 }
 
@@ -318,7 +318,7 @@ html {
   }
 
   .detail-row-title {
-    min-width: 0;
+    width: auto;
   }
 }
 
