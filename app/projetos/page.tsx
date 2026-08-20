@@ -10,6 +10,14 @@ const dict = {
     view: "Ver projeto →",
     projects: [
       {
+        title: "Jobscope",
+        description:
+          "Rastreador de candidaturas que transforma um link de vaga em dados acionáveis: um pipeline serverless na AWS extrai as skills exigidas, cruza com o seu currículo e mostra o gap — e o cv-maker gera currículo e carta sob medida para cada vaga.",
+        tags: ["AWS Serverless", "AWS CDK", "TypeScript", "Node.js", "React", "Google Gemini"],
+        slug: "jobscope",
+        year: "2026",
+      },
+      {
         title: "Influlens",
         description:
           "Plataforma de monitoramento e analytics desenvolvida sob medida para a Câmara Municipal de São Paulo, que unifica Instagram, Facebook e YouTube em um painel com análise de sentimento por IA e relatórios automatizados.",
@@ -56,6 +64,14 @@ const dict = {
     title: "What I've delivered",
     view: "View project →",
     projects: [
+      {
+        title: "Jobscope",
+        description:
+          "Job application tracker that turns a posting link into actionable data: a serverless AWS pipeline extracts the required skills, matches them against your resume and shows the gap — and the cv-maker generates a resume and cover letter tailored to each posting.",
+        tags: ["AWS Serverless", "AWS CDK", "TypeScript", "Node.js", "React", "Google Gemini"],
+        slug: "jobscope",
+        year: "2026",
+      },
       {
         title: "Influlens",
         description:
