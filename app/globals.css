@@ -349,20 +349,10 @@ html {
   align-items: start;
 }
 
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-}
-
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-  }
-
-  .stack-grid {
-    grid-template-columns: 1fr;
   }
 }
 

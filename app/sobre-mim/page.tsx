@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useLang, useT } from "../components/LanguageProvider";
 
 const PDF_VERSION = "v2";
@@ -13,8 +14,8 @@ const dict = {
     p2: "Possuo uma visão sistêmica, o que me permite mapear o projeto antes mesmo da execução. Por ter um bom senso de organização, prospero em ambientes de trabalho maduros e bem estruturados. É essa clareza de processos que me faz priorizar sustentabilidade e escalabilidade.",
     p3: "Meu grande objetivo profissional é dedicar essa base técnica a um projeto sólido e duradouro, que gere impacto direto e real na qualidade de vida de pessoas em situação de vulnerabilidade. Para estar à altura desse desafio, mantenho uma rotina contínua de estudos e atualização sobre novas tecnologias.",
     p4: "Encaro o desenvolvimento web, móvel e de software como minha profissão e responsabilidade a longo prazo. No entanto, valorizo profundamente o tempo desconectado. Sou um amante da natureza e encontro meu equilíbrio no esporte e em atividades ao ar livre. No futuro, planejo expandir essa paixão academicamente, realizando uma pós-graduação e um mestrado na área esportiva.",
-    stackTitle: "Projetos: stacks & frameworks",
     cvBtn: "Ver currículo",
+    projectsLink: "Ver projetos →",
     stats: [
       { value: "3+", label: "Anos de experiência" },
       { value: "15+", label: "Projetos entregues" },
@@ -28,8 +29,8 @@ const dict = {
     p2: "I have a systemic vision, which allows me to map out the project even before execution. Because of my strong sense of organization, I thrive in mature, well-structured work environments. That clarity of process is what drives me to prioritize sustainability and scalability.",
     p3: "My biggest professional goal is to dedicate this technical foundation to a solid, long-lasting project that creates direct, real impact on the quality of life of people in vulnerable situations. To be up to that challenge, I keep a continuous routine of study and staying current with new technologies.",
     p4: "I see web, mobile, and software development as my long-term profession and responsibility. That said, I deeply value time offline. I'm a nature lover and find my balance in sports and outdoor activities. In the future, I plan to take this passion further academically, pursuing a postgraduate degree and a master's in the sports field.",
-    stackTitle: "Projects: stacks & frameworks",
     cvBtn: "View resume",
+    projectsLink: "View projects →",
     stats: [
       { value: "3+", label: "Years of experience" },
       { value: "15+", label: "Projects delivered" },
@@ -37,21 +38,6 @@ const dict = {
     ],
   },
 };
-
-const projectStack = [
-  { name: "CE-APP",                lang: "TypeScript",   framework: "Ionic 6 + Angular 13 + Capacitor", db: null },
-  { name: "CE-Monitor",            lang: "JavaScript",   framework: "Express.js + BullMQ",              db: "MySQL + Redis" },
-  { name: "Sleep-Good",            lang: "TypeScript",   framework: "Expo + Next.js 15",                db: "Supabase" },
-  { name: "Race-Game",             lang: "JavaScript",   framework: "Vite + Three.js",                  db: null },
-  { name: "Moldura",               lang: "TypeScript",   framework: "Next.js 16 + React 19",            db: null },
-  { name: "Kaleu.dev-site",        lang: "TypeScript",   framework: "Next.js 16 + React 19",            db: null },
-  { name: "Jogodopatrao",          lang: "JavaScript",   framework: "Three.js (Vanilla)",               db: null },
-  { name: "Jogodopatrao-portfolio",lang: "JavaScript",   framework: "Babylon.js",                       db: null },
-  { name: "Tempo-Jiggler",         lang: "Python",       framework: "CustomTkinter",                    db: null },
-  { name: "CV-Maker",              lang: "JavaScript",   framework: "Puppeteer (CLI)",                  db: null },
-  { name: "HTTP-Restaurant",       lang: "HTML/CSS/JS",  framework: "Vanilla",                          db: null },
-  { name: "Mercor",                lang: null,           framework: "Documentacao/PDFs",                db: null },
-];
 
 export default function SobreMim() {
   const t = useT(dict);
@@ -109,78 +95,23 @@ export default function SobreMim() {
                 {p}
               </p>
             ))}
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.75rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.75rem', alignItems: 'center' }}>
               <a href={cvPdf} target="_blank" rel="noopener noreferrer" className="btn-primary">{t.cvBtn}</a>
-            </div>
-          </div>
-        </div>
-
-        {/* Stack — projetos e tecnologias */}
-        <div style={{
-          borderTop: '1px solid var(--border)',
-          marginTop: '4rem',
-          paddingTop: '3rem',
-        }}>
-          <p style={{
-            fontFamily: 'var(--font-geist-mono)',
-            fontSize: '0.72rem',
-            color: 'var(--muted)',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            marginBottom: '1.25rem',
-          }}>
-            {t.stackTitle}
-          </p>
-          <div className="stack-grid">
-            {projectStack.map(({ name, lang, framework, db }) => (
-              <div
-                key={name}
+              <Link
+                href="/projetos"
                 style={{
-                  backgroundColor: 'var(--surface)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '0.5rem',
-                  padding: '0.875rem 1rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.35rem',
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{
-                    fontFamily: 'var(--font-geist-mono)',
-                    fontSize: '0.8125rem',
-                    fontWeight: 500,
-                    color: 'var(--text)',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}>
-                    {name}
-                  </span>
-                  {lang && (
-                    <span className="tag" style={{ flexShrink: 0 }}>{lang}</span>
-                  )}
-                </div>
-                <span style={{
-                  fontFamily: 'var(--font-geist-mono)',
-                  fontSize: '0.6875rem',
+                  fontSize: '0.8125rem',
                   color: 'var(--muted)',
-                  lineHeight: 1.4,
-                }}>
-                  {framework}
-                </span>
-                {db && (
-                  <span style={{
-                    fontFamily: 'var(--font-geist-mono)',
-                    fontSize: '0.6875rem',
-                    color: 'var(--muted)',
-                    opacity: 0.65,
-                  }}>
-                    db: {db}
-                  </span>
-                )}
-              </div>
-            ))}
+                  textDecoration: 'none',
+                  padding: '0.5rem 0',
+                  transition: 'color 0.15s ease',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}
+              >
+                {t.projectsLink}
+              </Link>
+            </div>
           </div>
         </div>
 
