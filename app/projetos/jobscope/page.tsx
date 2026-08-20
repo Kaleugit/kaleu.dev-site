@@ -35,11 +35,11 @@ const dict = {
         desc: "Gera currículo e carta de apresentação escritos para uma vaga específica, selecionando conteúdo de um perfil-mestre — nada inventado, para que toda afirmação sobreviva à entrevista. Ambos respeitam regras de ATS e o limite de uma página, com preview A4 lado a lado mostrando a ocupação real da página medida pelo navegador e um relatório de cobertura do que entrou, do que faltou e do que foi cortado.",
       },
       {
-        title: "Infraestrutura 100% Código",
+        title: "Infraestrutura 100% Código",
         desc: "Toda a stack é AWS CDK em TypeScript: CloudFront + S3 privado (OAC), API Gateway HTTP API, Lambda em Node 22 e DynamoDB single-table on-demand. Um comando sobe tudo. Custo mensal: zero, dentro do free tier da AWS e do Gemini.",
       },
       {
-        title: "CI/CD sem Chaves de Acesso",
+        title: "CI/CD sem Chaves de Acesso",
         desc: "O deploy é automático via GitHub Actions assumindo uma role IAM por OIDC — nenhuma credencial guardada no repositório. Isso rendeu um bug de produção real: o subject claim do OIDC do GitHub embute IDs numéricos, e a trust policy só passou a casar depois de ser escopada para a forma com IDs, diagnosticada via CloudTrail.",
       },
     ],
@@ -85,11 +85,11 @@ const dict = {
         desc: "Generates a resume and cover letter written for one specific posting, selecting content from a master profile — nothing invented, so every claim survives the interview. Both are checked against ATS rules and a one-page limit, with a side-by-side A4 preview showing the real page occupancy as measured by the browser, and a coverage report of what made it in, what was missing and what was cut.",
       },
       {
-        title: "Infrastructure as 100% Code",
+        title: "Infrastructure as 100% Code",
         desc: "The whole stack is AWS CDK in TypeScript: CloudFront + private S3 (OAC), API Gateway HTTP API, Lambda on Node 22 and single-table on-demand DynamoDB. One command deploys everything. Monthly cost: zero, inside the AWS and Gemini free tiers.",
       },
       {
-        title: "CI/CD with No Access Keys",
+        title: "CI/CD with No Access Keys",
         desc: "Deploys run automatically through GitHub Actions assuming an IAM role via OIDC — no credentials stored in the repository. It even surfaced a real production bug: GitHub's OIDC subject claim embeds numeric IDs, and the trust policy only matched after being scoped to the ID form, diagnosed through CloudTrail.",
       },
     ],
