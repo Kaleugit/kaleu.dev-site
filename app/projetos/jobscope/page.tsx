@@ -12,6 +12,7 @@ const dict = {
     intro: "Rastreador de candidaturas que transforma um link de vaga em dados acionáveis: um pipeline assíncrono na AWS lê a página, extrai as skills exigidas e cruza com o seu currículo para mostrar o gap entre o que o mercado pede e o que você tem.",
     cta: "Ver ao vivo →",
     github: "GitHub →",
+    testLogin: "login de teste: admin / admin",
     contextTitle: "O Contexto e o Desafio",
     contextP1: "A busca por emprego é cega: você aplica para dezenas de vagas sem saber quais skills se repetem no mercado que está mirando, e adaptar o currículo para cada vaga à mão é caro demais para ser viável. O Jobscope resolve isso invertendo o fluxo — você cola a URL da vaga e um pipeline assíncrono lê a página, identifica empresa e cargo e extrai as skills exigidas. Ao enviar seu currículo, o dashboard cruza o que o mercado pede com o que você tem.",
     contextP2: "O desafio técnico foi rodar tudo isso 100% serverless, com a infraestrutura inteira versionada como código e custo mensal zero, dentro do free tier da AWS.",
@@ -62,6 +63,7 @@ const dict = {
     intro: "Job application tracker that turns a posting link into actionable data: an async AWS pipeline reads the page, extracts the required skills and matches them against your resume to show the gap between what the market asks for and what you have.",
     cta: "View live →",
     github: "GitHub →",
+    testLogin: "test login: admin / admin",
     contextTitle: "Context and Challenge",
     contextP1: "Job hunting is blind: you apply to dozens of postings without knowing which skills keep repeating in the market you're aiming at, and tailoring your resume for each posting by hand is too expensive to be viable. Jobscope solves this by inverting the flow — you paste the posting URL and an async pipeline reads the page, identifies company and role, and extracts the required skills. Once you upload your resume, the dashboard matches what the market asks for against what you have.",
     contextP2: "The technical challenge was running all of it 100% serverless, with the entire infrastructure versioned as code and a monthly cost of zero, inside the AWS free tier.",
@@ -295,6 +297,16 @@ export default function Jobscope() {
           >
             {t.cta}
           </a>
+          <span style={{
+            fontSize: "0.72rem",
+            fontFamily: "var(--font-geist-mono)",
+            color: "var(--muted)",
+            border: "1px solid var(--border)",
+            borderRadius: "0.375rem",
+            padding: "0.35rem 0.6rem",
+          }}>
+            {t.testLogin}
+          </span>
           <a
             href="https://github.com/Kaleugit/jobscope"
             target="_blank"
