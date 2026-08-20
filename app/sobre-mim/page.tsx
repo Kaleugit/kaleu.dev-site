@@ -81,7 +81,7 @@ export default function SobreMim() {
             />
             <div style={{ position: 'relative', width: '100%', aspectRatio: '1280 / 1120', borderRadius: '0.75rem', overflow: 'hidden' }}>
               <Image
-                src="/kl3.jpeg"
+                src="/kl4.jpeg"
                 alt="Kaleu"
                 fill
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
