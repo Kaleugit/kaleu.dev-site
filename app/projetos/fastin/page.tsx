@@ -43,9 +43,6 @@ const dict = {
     techP1: "Desenvolvi o app numa máquina Windows ARM64, e no meio do caminho descobri que o Google não publica o emulador Android para essa plataforma — o pacote nem aparece no SDK manager. O Robolectric, que roda testes de Android na JVM, também só publica binário nativo para x86_64 no Windows, e uma JVM ARM64 não carrega DLL x64.",
     techP2: "A saída foi isolar o problema onde ele realmente existe: apenas a JVM de teste roda em x64. Compilação, Kotlin, KSP, R8 e o empacotamento do APK seguem em ARM64 nativo — o APK entregue nunca passa por emulação. Com isso, os 90 testes rodam na JVM, sem aparelho conectado.",
     techP3: "Para ver as telas, cada uma é composta e desenhada de verdade num bitmap e salva em PNG. Isso virou também um teste de renderização: uma tela que quebrasse ao medir ou desenhar falharia ali, e nenhum outro teste pegaria — os demais consultam a árvore de semântica, que existe mesmo quando o desenho falha.",
-    lessonTitle: "O bug que quase não apareceu",
-    lessonP1: "Num teste de formulário, o botão salvar ficava abaixo da dobra na tela pequena do ambiente de teste. O toque caía fora da janela e era descartado em silêncio — sem exceção, sem aviso. O salvamento nunca acontecia, e os testes que afirmavam \"o banco continua vazio\" passavam. Dois testes verdes provando exatamente nada.",
-    lessonP2: "A correção não foi só rolar até o elemento antes de tocar. Foi adotar como regra que toda asserção que exige um efeito tenha um par que exige a ausência dele. Sem esse par, uma função quebrada continua passando para sempre. A mesma disciplina revelou depois um vazamento entre testes e uma recursão infinita — e, nas screenshots, que o calendário virava uma parede de laranja com uso real.",
     numbersTitle: "Números",
     numbers: [
       { label: "Testes na JVM", value: "90" },
@@ -92,9 +89,6 @@ const dict = {
     techP1: "I built the app on a Windows ARM64 machine, and partway through discovered that Google doesn't publish the Android emulator for that platform — the package doesn't even appear in the SDK manager. Robolectric, which runs Android tests on the JVM, also ships native binaries only for x86_64 on Windows, and an ARM64 JVM cannot load an x64 DLL.",
     techP2: "The fix was to isolate the problem where it actually exists: only the test JVM runs on x64. Compilation, Kotlin, KSP, R8 and APK packaging stay on native ARM64 — the delivered APK never passes through emulation. With that, all 90 tests run on the JVM, with no device attached.",
     techP3: "To see the screens, each one is really composed and drawn into a bitmap and saved as PNG. That doubled as a rendering test: a screen that broke while measuring or drawing would fail there, and no other test would catch it — the rest query the semantics tree, which exists even when drawing fails.",
-    lessonTitle: "The bug that almost didn't show up",
-    lessonP1: "In a form test, the save button sat below the fold on the test environment's small screen. The tap landed outside the window and was silently discarded — no exception, no warning. The save never happened, and the tests asserting \"the database is still empty\" passed. Two green tests proving exactly nothing.",
-    lessonP2: "The fix wasn't just scrolling to the element before tapping. It was adopting the rule that every assertion demanding an effect gets a paired assertion demanding its absence. Without that pair, a broken function keeps passing forever. The same discipline later surfaced a leak between tests and an infinite recursion — and, in the screenshots, that the calendar turned into a wall of orange under real usage.",
     numbersTitle: "Numbers",
     numbers: [
       { label: "Tests on the JVM", value: "90" },
@@ -327,13 +321,6 @@ export default function Fastin() {
             <p style={bodyStyle}>{t.techP1}</p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>{t.techP2}</p>
             <p style={{ ...bodyStyle, marginTop: "1rem" }}>{t.techP3}</p>
-          </div>
-
-          {/* Lição */}
-          <div>
-            <h2 style={headingStyle}>{t.lessonTitle}</h2>
-            <p style={bodyStyle}>{t.lessonP1}</p>
-            <p style={{ ...bodyStyle, marginTop: "1rem" }}>{t.lessonP2}</p>
           </div>
 
         </div>
