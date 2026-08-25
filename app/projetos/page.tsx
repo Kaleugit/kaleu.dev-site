@@ -10,6 +10,14 @@ const dict = {
     view: "Ver projeto →",
     projects: [
       {
+        title: "fastin",
+        description:
+          "App Android de controle de jejum intermitente. Offline por construção — o manifesto não declara permissão de internet, então funciona em modo avião de verdade: sem backend, sem login, sem Play Services e sem dado de saúde saindo do aparelho.",
+        tags: ["Kotlin", "Jetpack Compose", "Room", "WorkManager", "Gradle KTS"],
+        slug: "fastin",
+        year: "2026",
+      },
+      {
         title: "Jobscope",
         description:
           "Rastreador de candidaturas que transforma um link de vaga em dados acionáveis: um pipeline serverless na AWS extrai as skills exigidas, cruza com o seu currículo e mostra o gap — e o cv-maker gera currículo e carta sob medida para cada vaga.",
@@ -64,6 +72,14 @@ const dict = {
     title: "What I've delivered",
     view: "View project →",
     projects: [
+      {
+        title: "fastin",
+        description:
+          "Android intermittent fasting tracker. Offline by construction — the manifest doesn't declare the internet permission, so it genuinely works in airplane mode: no backend, no login, no Play Services and no health data leaving the device.",
+        tags: ["Kotlin", "Jetpack Compose", "Room", "WorkManager", "Gradle KTS"],
+        slug: "fastin",
+        year: "2026",
+      },
       {
         title: "Jobscope",
         description:

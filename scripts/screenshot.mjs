@@ -10,6 +10,8 @@ const routes = [
   ['sobre-mim', '/sobre-mim'],
   ['projetos', '/projetos'],
   ['contato', '/contato'],
+  ['proj-fastin', '/projetos/fastin'],
+  ['proj-jobscope', '/projetos/jobscope'],
   ['proj-a-casa-do-patrao', '/projetos/a-casa-do-patrao'],
   ['proj-influlens', '/projetos/influlens'],
   ['proj-moldura', '/projetos/moldura'],
