@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLang, useT } from "../components/LanguageProvider";
 
-const PDF_VERSION = "v2";
+const PDF_VERSION = "v3";
 
 const dict = {
   pt: {
