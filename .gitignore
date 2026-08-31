@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 screenshots/
+
+# cv build output
+/cv/dist/
